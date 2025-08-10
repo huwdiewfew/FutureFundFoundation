@@ -1,540 +1,1114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hope Horizon Nonprofit | Empowering Communities</title>
-<meta name="description" content="Hope Horizon is dedicated to empowering communities through education, advocacy, and support programs." />
-<meta name="keywords" content="nonprofit, charity, education, advocacy, donate, volunteer" />
-<meta name="author" content="Hope Horizon Team" />
-<link rel="icon" href="favicon.ico" />
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto&display=swap" rel="stylesheet" />
-<style>
-  /* ========== RESET & BASE ========== */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #fff;
-    color: #1a202c;
-    line-height: 1.6;
-    scroll-behavior: smooth;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  h1,h2,h3,h4,h5,h6 {
-    font-family: 'Poppins', sans-serif;
-    color: #2f855a;
-    margin-top: 0;
-  }
-  a {
-    color: #2f855a;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  a:hover, a:focus {
-    color: #68d391;
-    outline: none;
-  }
-  button {
-    font-family: inherit;
-    cursor: pointer;
-  }
-  /* ========== HEADER & NAVIGATION ========== */
-  header {
-    background: white;
-    border-bottom: 1px solid #e6fffa;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-  nav {
-    max-width: 1200px;
-    margin: auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .logo {
-    font-weight: 700;
-    font-size: 1.6rem;
-    color: #2f855a;
-    user-select: none;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-  .nav-links a {
-    font-weight: 500;
-    font-size: 1rem;
-  }
-  .cta-btn {
-    background-color: #2f855a;
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .cta-btn:hover, .cta-btn:focus {
-    background-color: #68d391;
-    outline: none;
-  }
-  /* Mobile nav toggle */
-  .menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-  }
-  .menu-toggle div {
-    width: 25px;
-    height: 3px;
-    background: #2f855a;
-  }
-  @media (max-width: 768px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Future Fund Foundation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Lexend', sans-serif;
+      background: #fff;
+      color: #145214;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a {
+      color: #2a7a2a;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+    h1, h2, h3, h4 {
+      margin-top: 0;
+      font-weight: 700;
+      color: #145214;
+    }
+    button {
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      outline-offset: 3px;
+    }
+    button:focus-visible {
+      outline: 3px solid #2a7a2a;
+    }
+
+    /* --- Rotating ticker above header --- */
+    .header-top {
+      background-color: #e9f2e9;
+      color: #2a7a2a;
+      font-weight: 600;
+      font-size: 1rem;
+      overflow: hidden;
+      height: 2.3rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      user-select: none;
+    }
+    .scrolling-text {
+      white-space: nowrap;
+      display: inline-block;
+      animation: scrollText 20s linear infinite;
+      will-change: transform;
+    }
+    .scrolling-text:nth-child(2) {
+      position: absolute;
+      left: 100%;
+      animation-delay: 10s;
+    }
+    @keyframes scrollText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* --- Header --- */
+    header {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      border-bottom: 2px solid #2a7a2a;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgb(42 122 42 / 0.2);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      color: #2a7a2a;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      cursor: default;
+      user-select: none;
+    }
     .nav-links {
-      position: fixed;
-      top: 70px;
-      right: 0;
-      background: white;
-      height: calc(100% - 70px);
-      width: 220px;
-      flex-direction: column;
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0;
+      color: #2a7a2a;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: #145214;
+      border-bottom: 2px solid #145214;
+    }
+    .donate-cta {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.6rem 1.8rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 6px;
+      user-select: none;
+    }
+    .donate-cta:hover,
+    .donate-cta:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+
+    /* --- Hero Section --- */
+    #hero {
+      background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1470&q=80') center center/cover no-repeat;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      position: relative;
+      padding: 0 1rem;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 65, 18, 0.6);
+      z-index: 0;
+    }
+    #hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    #hero-slider {
+      font-weight: 900;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      min-height: 3.2rem;
+      color: #b9f6ca;
+      user-select: none;
+    }
+    #hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    #hero button {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.8rem 2.5rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: none;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    #hero button:hover,
+    #hero button:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+
+    /* --- Main Content --- */
+    main {
+      max-width: 1100px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 3.5rem;
+    }
+    section h2 {
+      border-bottom: 3px solid #2a7a2a;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    /* --- About Us --- */
+    .team-members {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .team-member {
+      flex: 1 1 280px;
+      background: #e9f2e9;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgb(42 122 42 / 0.15);
+      user-select: none;
+    }
+    .team-member h3 {
+      margin-bottom: 0.3rem;
+      color: #145214;
+      font-weight: 900;
+    }
+    .leader-hint {
+      font-style: italic;
+      font-weight: 600;
+      color: #2a7a2a;
+      margin-top: 0.7rem;
+    }
+
+    /* --- Programs --- */
+    .programs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
+    }
+    .program-item {
+      background: #e9f2e9;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 8px rgb(42 122 42 / 0.15);
+      user-select: none;
+    }
+    .program-item h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      color: #145214;
+    }
+    .program-item p {
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .learn-more {
+      background-color: transparent;
+      color: #2a7a2a;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+      text-decoration: underline;
+      border: none;
+      user-select: none;
+    }
+    .learn-more:hover,
+    .learn-more:focus {
+      color: #145214;
+      outline: none;
+    }
+    .program-details {
+      margin-top: 0.8rem;
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #1e3e1e;
+      user-select: text;
+    }
+
+    /* --- Testimonials --- */
+    #testimonials {
+      position: relative;
+    }
+    .testimonial-slide {
+      display: none;
+      background: #e9f2e9;
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 5px 12px rgb(42 122 42 / 0.15);
+      user-select: none;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonial-slide.active {
+      display: block;
+    }
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 1rem;
+      color: #145214;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      color: #2a7a2a;
+      margin-bottom: 1rem;
+    }
+    .testimonial-more {
+      background: none;
+      border: none;
+      color: #2a7a2a;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .testimonial-more:hover,
+    .testimonial-more:focus {
+      color: #145214;
+      outline: none;
+    }
+    .testimonial-details {
+      margin-top: 0.6rem;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #1e3e1e;
+      user-select: text;
+    }
+    .testimonial-nav {
+      margin-top: 1.4rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      user-select: none;
+    }
+    .testimonial-nav button {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #2a7a2a;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .testimonial-nav button[aria-selected="true"] {
+      background-color: #2a7a2a;
+      border-color: #145214;
+    }
+    .testimonial-nav button:focus-visible {
+      outline: 3px solid #145214;
+    }
+
+    /* --- Get Involved --- */
+    #get-involved > div {
+      background: #e9f2e9;
       padding: 2rem;
-      transform: translateX(100%);
-      transition: transform 0.3s ease-in-out;
-      box-shadow: -3px 0 6px rgba(0,0,0,0.1);
-      z-index: 998;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgb(42 122 42 / 0.15);
+      user-select: none;
     }
-    .nav-links.open {
-      transform: translateX(0);
+    #get-involved p {
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #2a7a2a;
     }
-    .menu-toggle {
+    #get-involved button {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.8rem 2.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: none;
+      user-select: none;
+    }
+    #get-involved button:hover,
+    #get-involved button:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+
+    /* --- Donation Section --- */
+    #donate {
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #e9f2e9;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 12px rgb(42 122 42 / 0.25);
+      user-select: none;
+    }
+    #donate h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    form label {
+      display: block;
+      margin: 0.8rem 0 0.3rem;
+      font-weight: 700;
+      color: #145214;
+    }
+    .donation-amounts {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .donation-amounts button {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      user-select: none;
+      flex: 1 0 70px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .donation-amounts button[aria-checked="true"] {
+      background-color: #2a7a2a;
+    }
+    .donation-amounts button:hover,
+    .donation-amounts button:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+    #custom-amount {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #2a7a2a;
+      font-size: 1rem;
+      font-family: 'Lexend', sans-serif;
+      margin-bottom: 1rem;
+      box-sizing: border-box;
+      user-select: text;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #2a7a2a;
+      font-size: 1rem;
+      font-family: 'Lexend', sans-serif;
+      user-select: text;
+    }
+    #payment-logo {
+      height: 36px;
+      margin: 0.6rem 0 1rem;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    #card-info label {
+      margin-top: 0.6rem;
+    }
+    #card-info input {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid #2a7a2a;
+      font-size: 1rem;
+      font-family: 'Lexend', sans-serif;
+      user-select: text;
+    }
+    #donation-error {
+      color: #c62828;
+      margin-top: 0.7rem;
+      font-weight: 700;
+      text-align: center;
+      min-height: 1.2rem;
+      user-select: none;
+    }
+    #donate button[type="submit"] {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.8rem 2.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: none;
+      margin-top: 1rem;
+      user-select: none;
+      width: 100%;
+      cursor: pointer;
+    }
+    #donate button[type="submit"]:hover,
+    #donate button[type="submit"]:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+
+    /* --- Donation Modal Popup --- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1100;
+      padding: 1rem;
+      user-select: none;
+    }
+    .modal-overlay.active {
       display: flex;
     }
-  }
-  /* ========== HERO SECTION ========== */
-  .hero {
-    background: linear-gradient(rgba(47,133,90,0.75), rgba(47,133,90,0.75)), url('https://images.unsplash.com/photo-1567428484970-5a3360f15e27?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-    color: white;
-    padding: 6rem 2rem 8rem;
-    text-align: center;
-  }
-  .hero h1 {
-    font-size: 3rem;
-    max-width: 800px;
-    margin: 0 auto 1rem;
-    font-weight: 700;
-    line-height: 1.1;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  }
-  .hero p {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  }
-  .hero .donate-btn {
-    font-family: 'Poppins', sans-serif;
-    background-color: #68d391;
-    color: #1a202c;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(104,211,145,0.6);
-    transition: background-color 0.3s;
-  }
-  .hero .donate-btn:hover, .hero .donate-btn:focus {
-    background-color: #2f855a;
-    color: white;
-    outline: none;
-  }
-  /* ========== MAIN CONTENT ========== */
-  main {
-    max-width: 1100px;
-    margin: 4rem auto 6rem;
-    padding: 0 1rem;
-  }
-  section {
-    margin-bottom: 4rem;
-  }
-  /* ========== ABOUT US ========== */
-  #about-us {
-    text-align: center;
-  }
-  #about-us h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  #about-us p.leader-hint {
-    font-style: italic;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    color: #2f855a;
-  }
-  .team-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-  .team-member {
-    background: #e6fffa;
-    border-radius: 12px;
-    padding: 1rem;
-    width: 250px;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-    text-align: center;
-    transition: transform 0.3s;
-  }
-  .team-member:hover, .team-member:focus-within {
-    transform: translateY(-6px);
-  }
-  .team-member img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    border: 4px solid #68d391;
-  }
-  .team-member h3 {
-    margin-bottom: 0.25rem;
-    color: #276749;
-  }
-  .team-member p {
-    font-size: 0.9rem;
-    color: #234e52;
-  }
-  /* ========== PROGRAMS ========== */
-  #programs h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .programs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 2rem;
-  }
-  .program-card {
-    background: #e6fffa;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: box-shadow 0.3s;
-  }
-  .program-card:hover, .program-card:focus-within {
-    box-shadow: 0 6px 15px rgba(47,133,90,0.4);
-  }
-  .program-card svg {
-    width: 60px;
-    height: 60px;
-    fill: #2f855a;
-    margin-bottom: 1rem;
-  }
-  .program-card h3 {
-    margin-bottom: 0.5rem;
-  }
-  .program-card p {
-    flex-grow: 1;
-    color: #234e52;
-    margin-bottom: 1rem;
-  }
-  .program-card a {
-    font-weight: 600;
-    color: #2f855a;
-  }
-  /* ========== IMPACT STATS ========== */
-  #impact {
-    background: #2f855a;
-    color: white;
-    padding: 4rem 1rem;
-    text-align: center;
-    border-radius: 12px;
-    max-width: 1100px;
-    margin: 0 auto 4rem;
-  }
-  #impact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  .stats-grid {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
-  }
-  .stat {
-    font-size: 3rem;
-    font-weight: 700;
-  }
-  .stat-desc {
-    font-size: 1.2rem;
-    margin-top: 0.25rem;
-  }
-  /* ========== TESTIMONIALS ========== */
-  #testimonials {
-    max-width: 1100px;
-    margin: 0 auto 4rem;
-  }
-  #testimonials h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .testimonial-slider {
-    position: relative;
-    overflow: hidden;
-  }
-  .testimonial-slide {
-    display: none;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-    border-radius: 12px;
-    background: #e6fffa;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .testimonial-slide.active {
-    display: block;
-    animation: fadeIn 1s ease forwards;
-  }
-  .testimonial-slide p {
-    font-style: italic;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: #276749;
-  }
-  .testimonial-author {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
-  .testimonial-author img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #68d391;
-  }
-  .testimonial-author div {
-    font-weight: 600;
-    color: #234e52;
-  }
-  /* Slider nav */
-  .testimonial-nav {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  .testimonial-nav button {
-    background: #68d391;
-    border: none;
-    width: 12px;
-    height: 12px;
-    margin: 0 6px;
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.3s;
-  }
-  .testimonial-nav button.active,
-  .testimonial-nav button:hover,
-  .testimonial-nav button:focus {
-    opacity: 1;
-    outline: none;
-  }
-  /* Animations */
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  /* ========== GET INVOLVED ========== */
-  #get-involved {
-    max-width: 1100px;
-    margin: 0 auto 4rem;
-    text-align: center;
-  }
-  #get-involved h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  .involve-options {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-  }
-  .involve-card {
-    background: #e6fffa;
-    border-radius: 12px;
-    padding: 2rem;
-    max-width: 280px;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-  .involve-card:hover, .involve-card:focus-within {
-    transform: translateY(-6px);
-    outline: none;
-  }
-  .involve-card h3 {
-    margin-bottom: 1rem;
-    color: #276749;
-  }
-  .involve-card p {
-    margin-bottom: 1rem;
-    color: #234e52;
-  }
-  .involve-card button {
-    background-color: #2f855a;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.25rem;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .involve-card button:hover, .involve-card button:focus {
-    background-color: #68d391;
-    outline: none;
-  }
-  /* ========== DONATION SECTION ========== */
-  #donate {
-    max-width: 600px;
-    margin: 0 auto 6rem;
-    background: #e6fffa;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-  }
-  #donate h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #2f855a;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  label {
-    font-weight: 600;
-    color: #276749;
-  }
-  input, select {
-    padding: 0.6rem 0.8rem;
-    font-size: 1rem;
-    border: 1.5px solid #68d391;
-    border-radius: 6px;
-    outline-offset: 2px;
-  }
-  input:focus, select:focus {
-    border-color: #2f855a;
-    outline: none;
-  }
-  .donation-amounts {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-  .donation-amounts button {
-    background: #68d391;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #1a202c;
-    transition: background-color 0.3s;
-  }
-  .donation-amounts button:hover, .donation-amounts button:focus {
-    background: #2f855a;
-    color: white;
-    outline: none;
-  }
-  .submit-btn {
-    background-color: #2f855a;
-    color: white;
-    padding: 0.75rem;
-    font-weight: 700;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  .submit-btn:hover, .submit-btn:focus {
-    background-color: #68d391;
-    color: #1a202c;
-    outline: none;
-  }
-  .form-error {
-    color: #c53030;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-  /* ========== UPCOMING EVENTS ========== */
-  #events {
-    max-width: 1100px;
-    margin: 0 auto 4rem;
-  }
-  #events h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .events-list {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
-  }
-  .event-card {
-    background: #e6fffa;
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 2px 6px rgba(47,133,90,0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .event-card h3 {
-    color: #276749;
-    margin-bottom: 0.25rem;
-  }
-  .event-card p {
-    font-size: 0.95rem;
-    color: #234e52;
-    margin-bottom: 0.75rem;
-  }
-  .event-card button {
-    background-color: #2f855a;
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: background-color 0.3s;
-  }
-  .event-card button:hover, .event-card button:focus {
-    background-color: #68
+    .modal {
+      background: #e9f2e9;
+      border-radius: 12px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      max-width: 380px;
+      width: 100%;
+      color: #145214;
+      text-align: center;
+      font-weight: 600;
+    }
+    .modal h3 {
+      margin-top: 0;
+      font-weight: 900;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    .modal p {
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      user-select: none;
+    }
+    .modal button {
+      background-color: #3bb03b;
+      color: white;
+      padding: 0.8rem 3rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 8px;
+      border: none;
+      user-select: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .modal button:hover,
+    .modal button:focus {
+      background-color: #2a7a2a;
+      outline: none;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 700;
+      color: #145214;
+      cursor: pointer;
+      user-select: none;
+    }
+    .modal-close:focus-visible {
+      outline: 3px solid #145214;
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: #e9f2e9;
+      color: #145214;
+      padding: 2rem 1rem;
+      text-align: center;
+      user-select: none;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #2a7a2a;
+      margin: 0 0.4rem;
+      font-weight: 600;
+    }
+    footer a:hover,
+    footer a:focus {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .team-members {
+        flex-direction: column;
+      }
+      .programs-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Rotating ticker text above header -->
+<div class="header-top" aria-live="polite" aria-atomic="true" role="region">
+  <div class="scrolling-text" aria-hidden="true">
+    Our knowledge empowers communities • Finance literacy changes futures • Supporting schools with finance education • Empowering children with money skills • Our knowledge empowers communities • Finance literacy changes futures • Supporting schools with finance education • Empowering children with money skills
+  </div>
+  <div class="scrolling-text" aria-hidden="true">
+    Our knowledge empowers communities • Finance literacy changes futures • Supporting schools with finance education • Empowering children with money skills • Our knowledge empowers communities • Finance literacy changes futures • Supporting schools with finance education • Empowering children with money skills
+  </div>
+</div>
+
+<header role="banner" aria-label="Primary navigation">
+  <nav>
+    <div class="logo" aria-label="Future Fund Foundation logo">Future Fund Foundation</div>
+    <ul class="nav-links" role="menubar">
+      <li role="none"><a href="#about" role="menuitem" tabindex="0">About Us</a></li>
+      <li role="none"><a href="#programs" role="menuitem" tabindex="0">Programs</a></li>
+      <li role="none"><a href="#get-involved" role="menuitem" tabindex="0">Get Involved</a></li>
+      <li role="none"><a href="#donate" role="menuitem" tabindex="0">Donate</a></li>
+      <li role="none"><a href="#contact" role="menuitem" tabindex="0">Contact</a></li>
+    </ul>
+    <button class="donate-cta" onclick="document.getElementById('donate').scrollIntoView({behavior: 'smooth'})">Donate Now</button>
+  </nav>
+</header>
+
+<section id="hero" role="region" aria-label="Introduction to Future Fund Foundation">
+  <div id="hero-content">
+    <div id="hero-slider" aria-live="polite" aria-atomic="true" style="user-select:none;">Educate</div>
+    <h1>Empowering the Next Generation</h1>
+    <p>Providing finance education packages to schools and communities to build a smarter future.</p>
+    <button onclick="document.getElementById('donate').scrollIntoView({behavior: 'smooth'})">Donate Now</button>
+  </div>
+</section>
+
+<main>
+  <section id="about" aria-label="About Future Fund Foundation">
+    <h2>About Us</h2>
+    <div class="team-members">
+      <article class="team-member" tabindex="0">
+        <h3>Adamya Bajpayee</h3>
+        <p>Guiding the vision with a deep commitment to empowering youth through financial literacy, Adamya drives the mission forward with passion and expertise.</p>
+        <p class="leader-hint">The voice you often hear setting the course.</p>
+      </article>
+      <article class="team-member" tabindex="0">
+        <h3>Pranav Iswara</h3>
+        <p>Focused on community outreach and program development, Pranav ensures our initiatives reach those who need them most.</p>
+      </article>
+      <article class="team-member" tabindex="0">
+        <h3>Rithvik Chintla</h3>
+        <p>Handling partnerships and collaborations, Rithvik connects us with schools and supporters to broaden our impact.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="programs" aria-label="Our Programs and Initiatives">
+    <h2>Our Programs</h2>
+    <div class="programs-list">
+      <article class="program-item">
+        <h3>📚 School Finance Kits</h3>
+        <p>We provide finance kits with lesson plans and materials directly to schools.</p>
+        <button class="learn-more" aria-expanded="false" aria-controls="details1">Learn More</button>
+        <div id="details1" class="program-details" hidden>
+          Our kits include comprehensive guides, interactive activities, and digital tools designed to make learning finance engaging for children ages 8-14.
+        </div>
+      </article>
+      <article class="program-item">
+        <h3>🎓 Teacher Workshops</h3>
+        <p>Training educators to deliver effective financial literacy education.</p>
+        <button class="learn-more" aria-expanded="false" aria-controls="details2">Learn More</button>
+        <div id="details2" class="program-details" hidden>
+          Our workshops equip teachers with practical methods, real-life examples, and ongoing support to confidently teach finance topics.
+        </div>
+      </article>
+      <article class="program-item">
+        <h3>💻 Online Resources</h3>
+        <p>Interactive online modules and webinars for students and parents.</p>
+        <button class="learn-more" aria-expanded="false" aria-controls="details3">Learn More</button>
+        <div id="details3" class="program-details" hidden>
+          Accessible anytime, these digital resources complement classroom learning and empower families to engage with financial education at home.
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Removed fake stats section as requested -->
+
+  <section id="testimonials" aria-label="Testimonials from beneficiaries and supporters">
+    <h2>What People Say</h2>
+
+    <div class="testimonial-slide active" tabindex="0" aria-live="polite">
+      <p class="testimonial-quote">"Thanks to Future Fund Foundation, our students now understand money management better than ever."</p>
+      <p class="testimonial-name">– Principal Lisa M.</p>
+      <button class="testimonial-more" aria-expanded="false" aria-controls="testimonial-details1">Read More</button>
+      <div id="testimonial-details1" class="testimonial-details" hidden>
+        The foundation’s school kits and workshops have transformed our curriculum and given students confidence with real-world finance skills.
+      </div>
+    </div>
+
+    <div class="testimonial-slide" tabindex="0" aria-live="polite">
+      <p class="testimonial-quote">"Volunteering here opened my eyes to the power of education and community support."</p>
+      <p class="testimonial-name">– Volunteer Jason R.</p>
+      <button class="testimonial-more" aria-expanded="false" aria-controls="testimonial-details2">Read More</button>
+      <div id="testimonial-details2" class="testimonial-details" hidden>
+        The team’s dedication is inspiring, and it feels amazing to help kids get a head start in understanding finances.
+      </div>
+    </div>
+
+    <div class="testimonial-slide" tabindex="0" aria-live="polite">
+      <p class="testimonial-quote">"As a parent, I appreciate the accessible resources for teaching my kids about money."</p>
+      <p class="testimonial-name">– Parent Sarah K.</p>
+      <button class="testimonial-more" aria-expanded="false" aria-controls="testimonial-details3">Read More</button>
+      <div id="testimonial-details3" class="testimonial-details" hidden>
+        The webinars are clear, engaging, and have helped my family discuss money matters confidently.
+      </div>
+    </div>
+
+    <div class="testimonial-nav" role="tablist" aria-label="Testimonial navigation">
+      <button role="tab" aria-selected="true" tabindex="0" aria-controls="testimonial-details1" id="tab1"></button>
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="testimonial-details2" id="tab2"></button>
+      <button role="tab" aria-selected="false" tabindex="-1" aria-controls="testimonial-details3" id="tab3"></button>
+    </div>
+  </section>
+
+  <section id="get-involved" aria-label="Get involved with Future Fund Foundation">
+    <h2>Get Involved</h2>
+    <div>
+      <p>Join us in empowering youth through finance education. You can volunteer, donate, partner, or advocate with us.</p>
+      <button onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+    </div>
+  </section>
+
+  <section id="donate" aria-label="Donation form">
+    <h2>Support Our Mission</h2>
+    <form id="donation-form" novalidate>
+      <label for="donor-name">Full Name</label>
+      <input type="text" id="donor-name" name="donor-name" autocomplete="name" required />
+
+      <label for="donor-email">Email Address</label>
+      <input type="email" id="donor-email" name="donor-email" autocomplete="email" required />
+
+      <fieldset>
+        <legend>Donation Amount</legend>
+        <div class="donation-amounts" role="radiogroup" aria-label="Donation amount selection">
+          <button type="button" role="radio" aria-checked="false" tabindex="0" data-amount="10">$10</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-amount="25">$25</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-amount="50">$50</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-amount="100">$100</button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1" data-amount="custom">Custom</button>
+        </div>
+        <input type="number" id="custom-amount" name="custom-amount" min="1" placeholder="Enter custom amount" aria-label="Custom donation amount" />
+      </fieldset>
+
+      <label for="payment-method">Payment Method</label>
+      <select id="payment-method" name="payment-method" required>
+        <option value="" disabled selected>Select method</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="paypal">PayPal</option>
+      </select>
+      <div id="payment-logo" aria-hidden="true" style="width: 80px;"></div>
+
+      <div id="card-info" style="display:none;" aria-live="polite" aria-relevant="additions removals">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" name="card-number" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number" />
+
+        <label for="card-expiry">Expiry Date (MM/YY)</label>
+        <input type="text" id="card-expiry" name="card-expiry" maxlength="5" placeholder="MM/YY" autocomplete="cc-exp" />
+
+        <label for="card-cvc">CVC</label>
+        <input type="text" id="card-cvc" name="card-cvc" maxlength="4" placeholder="123" autocomplete="cc-csc" />
+      </div>
+
+      <div id="donation-error" role="alert" aria-live="assertive"></div>
+
+      <button type="submit">Donate</button>
+    </form>
+  </section>
+
+  <section id="contact" aria-label="Contact information">
+    <h2>Contact Us</h2>
+    <p>Future Fund Foundation</p>
+    <p>Email: <a href="mailto:info@futurefundfoundation.org">info@futurefundfoundation.org</a></p>
+    <p>Phone: <a href="tel:+12345678900">(123) 456-7890</a></p>
+    <p>Address: 123 Finance Way, Education City, USA</p>
+    <div style="margin-top:1rem;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0191822561764!2d-122.4012503846815!3d37.79240677975619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064e5338d5b%3A0xd1649e2e00b1b47a!2sFinancial%20District%2C%20San%20Francisco%2C%20CA%2094105!5e0!3m2!1sen!2sus!4v1626153791997!5m2!1sen!2sus"
+        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google Maps location">
+      </iframe>
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p>© 2025 Future Fund Foundation. All rights reserved.</p>
+  <p>
+    <a href="#about">About Us</a> |
+    <a href="#programs">Programs</a> |
+    <a href="#get-involved">Get Involved</a> |
+    <a href="#donate">Donate</a> |
+    <a href="#contact">Contact</a>
+  </p>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top" style="display:none;position:fixed;bottom:1.2rem;right:1.2rem;background:#3bb03b;color:#fff;border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;font-size:24px;line-height:1;user-select:none;">↑</button>
+
+<!-- Donation Modal Popup -->
+<div id="donation-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc" tabindex="-1">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close donation form" onclick="closeDonationModal()">×</button>
+    <h3 id="modal-title">Support Financial Education</h3>
+    <p id="modal-desc">Make a donation today to help us provide schools with finance education packages that empower children with money skills.</p>
+    <button onclick="openDonationSection()">Donate Now</button>
+  </div>
+</div>
+
+<script>
+  // Rotating hero words
+  const heroWords = ['Educate', 'Inspire', 'Empower', 'Grow', 'Build', 'Support'];
+  let heroIndex = 0;
+  const heroSlider = document.getElementById('hero-slider');
+
+  function cycleHeroWords() {
+    heroIndex = (heroIndex + 1) % heroWords.length;
+    heroSlider.textContent = heroWords[heroIndex];
+  }
+  setInterval(cycleHeroWords, 1800); // Slightly faster (1.8s per word)
+
+  // Learn More toggle for programs
+  document.querySelectorAll('.learn-more').forEach(button => {
+    button.addEventListener('click', () => {
+      const detailsId = button.getAttribute('aria-controls');
+      const details = document.getElementById(detailsId);
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      if (expanded) {
+        details.hidden = true;
+      } else {
+        details.hidden = false;
+        details.focus();
+      }
+    });
+  });
+
+  // Testimonials slider
+  const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+  const testimonialButtons = document.querySelectorAll('.testimonial-nav button');
+  let currentTestimonial = 0;
+
+  function showTestimonial(index) {
+    testimonialSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      slide.setAttribute('tabindex', i === index ? '0' : '-1');
+    });
+    testimonialButtons.forEach((btn, i) => {
+      btn.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      btn.tabIndex = i === index ? 0 : -1;
+    });
+    currentTestimonial = index;
+  }
+
+  testimonialButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => showTestimonial(i));
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        showTestimonial((i + 1) % testimonialButtons.length);
+        testimonialButtons[(i + 1) % testimonialButtons.length].focus();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        showTestimonial((i - 1 + testimonialButtons.length) % testimonialButtons.length);
+        testimonialButtons[(i - 1 + testimonialButtons.length) % testimonialButtons.length].focus();
+      }
+    });
+  });
+
+  showTestimonial(0);
+
+  // Testimonial read more toggle
+  document.querySelectorAll('.testimonial-more').forEach(button => {
+    button.addEventListener('click', () => {
+      const detailsId = button.getAttribute('aria-controls');
+      const details = document.getElementById(detailsId);
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', !expanded);
+      if (expanded) {
+        details.hidden = true;
+      } else {
+        details.hidden = false;
+        details.focus();
+      }
+    });
+  });
+
+  // Donation amount buttons
+  const amountButtons = document.querySelectorAll('.donation-amounts button');
+  const customAmountInput = document.getElementById('custom-amount');
+
+  amountButtons.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      amountButtons.forEach(b => {
+        b.setAttribute('aria-checked', 'false');
+        b.tabIndex = -1;
+      });
+      btn.setAttribute('aria-checked', 'true');
+      btn.tabIndex = 0;
+
+      if (btn.dataset.amount === 'custom') {
+        customAmountInput.style.display = 'block';
+        customAmountInput.focus();
+      } else {
+        customAmountInput.style.display = 'none';
+        customAmountInput.value = '';
+      }
+    });
+  });
+
+  // Hide custom amount input initially
+  customAmountInput.style.display = 'none';
+
+  // Payment method change & card logo detection
+  const paymentMethodSelect = document.getElementById('payment-method');
+  const paymentLogoDiv = document.getElementById('payment-logo');
+  const cardInfoDiv = document.getElementById('card-info');
+  const cardNumberInput = document.getElementById('card-number');
+
+  paymentMethodSelect.addEventListener('change', () => {
+    const val = paymentMethodSelect.value;
+    if (val === 'card') {
+      cardInfoDiv.style.display = 'block';
+      paymentLogoDiv.style.backgroundImage = 'none';
+    } else if (val === 'paypal') {
+      cardInfoDiv.style.display = 'none';
+      paymentLogoDiv.style.backgroundImage = 'url(https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg)';
+    } else {
+      cardInfoDiv.style.display = 'none';
+      paymentLogoDiv.style.backgroundImage = 'none';
+    }
+  });
+
+  // Card number input logo detection (Visa, MasterCard, Amex)
+  cardNumberInput.addEventListener('input', () => {
+    const num = cardNumberInput.value.replace(/\D/g, '');
+    let logoUrl = '';
+    if (/^4/.test(num)) {
+      // Visa
+      logoUrl = 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
+    } else if (/^5[1-5]/.test(num)) {
+      // MasterCard
+      logoUrl = 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg';
+    } else if (/^3[47]/.test(num)) {
+      // Amex
+      logoUrl = 'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg';
+    } else {
+      logoUrl = '';
+    }
+    paymentLogoDiv.style.backgroundImage = logoUrl ? `url(${logoUrl})` : 'none';
+  });
+
+  // Donation form submit (simple validation example)
+  const donationForm = document.getElementById('donation-form');
+  const donationError = document.getElementById('donation-error');
+
+  donationForm.addEventListener('submit', e => {
+    e.preventDefault();
+    donationError.textContent = '';
+
+    const name = donationForm['donor-name'].value.trim();
+    const email = donationForm['donor-email'].value.trim();
+    const paymentMethod = paymentMethodSelect.value;
+    let amount = null;
+
+    const selectedAmountBtn = Array.from(amountButtons).find(b => b.getAttribute('aria-checked') === 'true');
+    if (!selectedAmountBtn) {
+      donationError.textContent = 'Please select a donation amount.';
+      return;
+    }
+    if (selectedAmountBtn.dataset.amount === 'custom') {
+      amount = parseFloat(customAmountInput.value);
+      if (isNaN(amount) || amount < 1) {
+        donationError.textContent = 'Please enter a valid custom amount greater than $0.';
+        return;
+      }
+    } else {
+      amount = parseFloat(selectedAmountBtn.dataset.amount);
+    }
+
+    if (!name) {
+      donationError.textContent = 'Please enter your full name.';
+      return;
+    }
+    if (!email || !email.includes('@')) {
+      donationError.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    if (!paymentMethod) {
+      donationError.textContent = 'Please select a payment method.';
+      return;
+    }
+
+    // For card payment: simple card fields validation (basic check)
+    if (paymentMethod === 'card') {
+      const cardNum = donationForm['card-number'].value.replace(/\s+/g, '');
+      const cardExp = donationForm['card-expiry'].value;
+      const cardCvc = donationForm['card-cvc'].value;
+
+      if (!/^\d{13,19}$/.test(cardNum)) {
+        donationError.textContent = 'Please enter a valid card number.';
+        return;
+      }
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(cardExp)) {
+        donationError.textContent = 'Please enter expiry in MM/YY format.';
+        return;
+      }
+      if (!/^\d{3,4}$/.test(cardCvc)) {
+        donationError.textContent = 'Please enter a valid CVC.';
+        return;
+      }
+    }
+
+    // Success (mock)
+    alert(`Thank you, ${name}! Your donation of $${amount.toFixed(2)} has been received. We appreciate your support.`);
+    donationForm.reset();
+    amountButtons.forEach(b => {
+      b.setAttribute('aria-checked', 'false');
+      b.tabIndex = -1;
+    });
+    customAmountInput.style.display = 'none';
+    paymentLogoDiv.style.backgroundImage = 'none';
+    cardInfoDiv.style.display = 'none';
+    donationError.textContent = '';
+  });
+
+  // Back to top button
+  const backToTopBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
+  // Donation modal popup on page load
+  const donationModal = document.getElementById('donation-modal');
+  function openDonationModal() {
+    donationModal.classList.add('active');
+    donationModal.focus();
+  }
+  function closeDonationModal() {
+    donationModal.classList.remove('active');
+  }
+  function openDonationSection() {
+    closeDonationModal();
+    document.getElementById('donate').scrollIntoView({behavior:'smooth'});
+  }
+  // Open modal after short delay (2 seconds)
+  window.addEventListener('load', () => {
+    setTimeout(openDonationModal, 2000);
+  });
+
+  // Close modal on Escape key
+  donationModal.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeDonationModal();
+    }
+  });
+
+  // Accessibility: Trap focus inside modal when active
+  donationModal.addEventListener('keydown', e => {
+    if (e.key === 'Tab') {
+      const focusableElements = donationModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+  });
+
+</script>
+</body>
+</html>
