@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoneySmart Futures - Empower Your Financial Future</title>
+
+  <!-- Google Fonts (You can change this later if you want!) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', 'Roboto', sans-serif;
+      background-color: #f7f5f0; /* warm beige */
+      color: #2f4f4f; /* dark greenish */
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: #3a6b35;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #6b8e23;
+    }
+
+    /* Sliding info bar at top */
+    .info-slider {
+      background: #6b8e23;
+      color: #f7f5f0;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 10px 0;
+      user-select: none;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1100;
+    }
+    .info-slider span {
+      padding: 0 40px;
+      animation: slideLeft 20s linear infinite;
+      display: inline-block;
+    }
+    .info-slider span:nth-child(2) {
+      animation-delay: 4s;
+    }
+    .info-slider span:nth-child(3) {
+      animation-delay: 8s;
+    }
+    .info-slider span:nth-child(4) {
+      animation-delay: 12s;
+    }
+    .info-slider span:nth-child(5) {
+      animation-delay: 16s;
+    }
+    @keyframes slideLeft {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Header */
+    header {
+      background: #e1ded5;
+      border-bottom: 2px solid #6b8e23;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+      position: sticky;
+      top: 40px; /* below slider */
+      z-index: 1050;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.15));
+    }
+
+    .logo h2 {
+      color: #3a6b35;
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+    }
+
+    /* Navigation */
+    nav {
+      position: relative;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      align-items: center;
+    }
+
+    nav ul li a {
+      padding: 8px 6px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: #6b8e23;
+      color: #f7f5f0;
+      transition: background-color 0.4s ease;
+    }
+
+    /* Hamburger and dropdown */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      color: #3a6b35;
+      cursor: pointer;
+      margin-left: 10px;
+      user-select: none;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 38px;
+      right: 0;
+      background: #e1ded5;
+      border: 2px solid #6b8e23;
+      border-radius: 8px;
+      box-shadow: 0 8px 15px rgba(58,107,53,0.25);
+      min-width: 150px;
+      z-index: 1100;
+    }
+
+    .dropdown-menu.open {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 18px;
+      font-weight: 600;
+      color: #3a6b35;
+      border-bottom: 1px solid #6b8e23;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #6b8e23;
+      color: #f7f5f0;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-top: 110px; /* below slider and header */
+      min-height: 70vh;
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f7f5f0;
+      text-align: center;
+      padding: 20px;
+      border-bottom-left-radius: 50% 15%;
+      border-bottom-right-radius: 50% 15%;
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.3);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(58, 107, 53, 0.3);
+      border-bottom-left-radius: 50% 15%;
+      border-bottom-right-radius: 50% 15%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+      z-index: 1;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-content h1 {
+      font-size: 3.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-content p {
+      font-size: 1.4rem;
+      margin-bottom: 1.8rem;
+      line-height: 1.4;
+      font-weight: 500;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .btn-primary {
+      background: #6b8e23;
+      border: none;
+      color: #f7f5f0;
+      padding: 15px 40px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(107, 142, 35, 0.7);
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #8fbf4a;
+      box-shadow: 0 8px 20px rgba(143, 191, 74, 0.8);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Content Sections with alternating layout */
+    section.content-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    section.content-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section.content-section:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    section.content-section .text-content {
+      flex: 1;
+    }
+
+    section.content-section .text-content h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      color: #3a6b35;
+    }
+
+    section.content-section .text-content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #2f4f4f;
+    }
+
+    section.content-section .image-content {
+      flex: 1;
+      max-width: 450px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(58,107,53,0.15);
+    }
+
+    section.content-section .image-content img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    /* Footer */
+    footer {
+      background: #3a6b35;
+      color: #f7f5f0;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      user-select: none;
+      margin-top: 80px;
+    }
+
+    footer .social-icons {
+      margin-bottom: 15px;
+    }
+
+    footer .social-icons a {
+      color: #f7f5f0;
+      margin: 0 12px;
+      font-size: 1.8rem;
+      transition: color 0.3s ease;
+    }
+
+    footer .social-icons a:hover {
+      color: #c0d890;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      section.content-section {
+        flex-direction: column !important;
+        text-align: center;
+      }
+      section.content-section .image-content,
+      section.content-section .text-content {
+        max-width: 100%;
+      }
+      section.content-section .image-content {
+        margin-bottom: 20px;
+      }
+      nav ul {
+        gap: 18px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 12px 20px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-block;
+      }
+
+      .dropdown-menu {
+        top: 42px;
+        right: 10px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sliding Info Bar at Top -->
+  <div class="info-slider" aria-live="polite" aria-atomic="true" role="region">
+    <span>💡 Did you know? Over 60% of Americans lack basic financial literacy skills.</span>
+    <span>📈 Saving early can significantly increase wealth over time thanks to compound interest.</span>
+    <span>💰 Budgeting helps you control your spending and reach your financial goals faster.</span>
+    <span>🎓 Financial education reduces stress and improves decision-making throughout life.</span>
+    <span>🔑 Smart money habits learned young build a foundation for economic independence.</span>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo" onclick="location.href='index.html'" tabindex="0" role="button" aria-label="Go to homepage">
+      <img src="https://via.placeholder.com/50x50.png?text=MSF" alt="MoneySmart Futures Logo" />
+      <h2>MoneySmart Futures</h2>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Programs</a></li>
+        <li><a href="#">Get Involved</a></li>
+        <li><a href="#">Donate</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Sign Up</a></li>
+      </ul>
+
+      <div class="menu-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <div class="dropdown-menu" aria-label="Mobile navigation menu" role="menu" tabindex="-1">
+        <a href="#" role="menuitem">Home</a>
+        <a href="#" role="menuitem">About Us</a>
+        <a href="#" role="menuitem">Programs</a>
+        <a href="#" role="menuitem">Get Involved</a>
+        <a href="#" role="menuitem">Donate</a>
+        <a href="#" role="menuitem">Login</a>
+        <a href="#" role="menuitem">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" role="banner" aria-label="Hero banner with mission statement">
+    <div class="hero-content">
+      <h1>Empower Your Financial Future</h1>
+      <p>Together we build financial literacy and independence for underserved communities.</p>
+      <button class="btn-primary" onclick="alert('Redirecting to Donate page (not implemented)')">Donate Now</button>
+    </div>
+  </section>
+
+  <!-- Content Sections with alternating layout -->
+
+  <section class="content-section" aria-label="About MoneySmart Futures">
+    <div class="text-content">
+      <h2>About Us</h2>
+      <p>
+        MoneySmart Futures is dedicated to empowering underserved communities through
+        financial literacy programs designed especially for kids and teens. We provide
+        educational tools, workshops, and mentorship to help young people make smart money
+        decisions and build a strong financial foundation.
+      </p>
+    </div>
+    <div class="image-content">
+      <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=600&q=80" alt="Kids learning about finance" />
+    </div>
+  </section>
+
+  <section class="content-section" aria-label="Our Mission">
+    <div class="image-content">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Financial planning concept" />
+    </div>
+    <div class="text-content">
+      <h2>Our Mission</h2>
+      <p>
+        Our mission is to create financial independence through education. We believe
+        that teaching money management early can transform lives, reduce economic stress,
+        and open doors to opportunities for future generations.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section" aria-label="Programs We Offer">
+    <div class="text-content">
+      <h2>Programs</h2>
+      <p>
+        We offer engaging workshops on budgeting, saving, investing, and entrepreneurship.
+        Our programs are tailored for different age groups and learning styles, including
+        interactive games, group activities, and real-life simulations.
+      </p>
+    </div>
+    <div class="image-content">
+      <img src="https://images.unsplash.com/photo-1532619675605-9e175e887f08?auto=format&fit=crop&w=600&q=80" alt="Kids in financial literacy workshop" />
+    </div>
+  </section>
+
+  <section class="content-section" aria-label="Get Involved with MoneySmart Futures">
+    <div class="image-content">
+      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Volunteering and community involvement" />
+    </div>
+    <div class="text-content">
+      <h2>Get Involved</h2>
+      <p>
+        Join us as a volunteer, mentor, or donor. Your support helps us reach more youth and
+        develop new programs to increase financial knowledge and independence.
+      </p>
+    </div>
+  </section>
+
+  <section class="content-section" aria-label="Why Donate to MoneySmart Futures">
+    <div class="text-content">
+      <h2>Why Donate?</h2>
+      <p>
+        Donations fund educational materials, event space, technology, and scholarships.
+        Every dollar helps us reach kids who need financial education the most and empower
+        them for a better future.
+      </p>
+    </div>
+    <div class="image-content">
+      <img src="https://images.unsplash.com/photo-1486308510493-cb44f6f8a8b8?auto=format&fit=crop&w=600&q=80" alt="Helping hands and donations" />
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-icons" aria-label="Social media links">
+      <a href="#" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>Contact us: info@moneysmartfutures.org | (555) 123-4567</p>
+    <p>&copy; 2025 MoneySmart Futures. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Hero fade in
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.hero-content').style.opacity = 1;
+
+      // Dropdown menu toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const dropdownMenu = document.querySelector('.dropdown-menu');
+
+      menuToggle.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('open');
+      });
+
+      // Accessibility: toggle menu on Enter or Space key
+      menuToggle.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dropdownMenu.classList.toggle('open');
+        }
+      });
+
+      // Hide dropdown if clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdownMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          dropdownMenu.classList.remove('open');
+        }
+      });
+
+      // Scroll reveal for content sections
+      const sections = document.querySelectorAll('section.content-section');
+      function revealOnScroll() {
+        const triggerBottom = window.innerHeight * 0.85;
+        sections.forEach(section => {
+          const sectionTop = section.getBoundingClientRect().top;
+          if (sectionTop < triggerBottom) {
+            section.classList.add('visible');
+          }
+        });
+      }
+      window.addEventListener('scroll', revealOnScroll);
+      revealOnScroll(); // reveal any visible on load
+    });
+  </script>
+</body>
+</html>
