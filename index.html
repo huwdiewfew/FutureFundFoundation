@@ -1,730 +1,750 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Future Fund Foundation™ — Empowering Financial Education</title>
-<meta name="description" content="Future Fund Foundation provides finance education packs and workshops for schools in Middlesex County, NJ and beyond." />
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --green-900:#0b3d0b;
-    --green-700:#145214;
-    --green-600:#2b8a3e;
-    --green-400:#a9e076;
-    --accent:#2b8a3e;
-    --bg:#ffffff;
-    --muted:#f0fff0;
-    --shadow: 0 8px 30px rgba(43,138,62,0.12);
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:"Lexend",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background:var(--bg);
-    color:var(--green-900);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.5;
-    scroll-behavior:smooth;
-  }
-  a{color:var(--green-600);text-decoration:none}
-  a:hover,a:focus{text-decoration:underline;outline:none}
-  button{font-family:inherit}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Future Fund Foundation™ — Empowering Financial Education</title>
+  <meta name="description" content="Future Fund Foundation provides finance education packs and workshops for schools in Middlesex County, NJ and beyond." />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green-900:#0b3d0b;
+      --green-700:#145214;
+      --green-600:#2b8a3e;
+      --green-500:#38a169;
+      --green-400:#a9e076;
+      --bg:#ffffff;
+      --muted:#f0fff0;
+      --shadow: 0 8px 30px rgba(43,138,62,0.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Lexend",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:var(--green-900);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      scroll-behavior:smooth;
+    }
+    a{color:var(--green-600);text-decoration:none}
+    a:hover,a:focus{text-decoration:underline;outline:none}
+    button{font-family:inherit}
 
-  /* TOP TICKER: fades left/right to avoid overlap */
-  .top-ticker-wrap{
-    background:#f2fbf4;
-    height:44px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    position:relative;
-    border-bottom:1px solid rgba(43,138,62,0.06);
-  }
-  .top-ticker-wrap::before,
-  .top-ticker-wrap::after{
-    content:"";
-    position:absolute; top:0; bottom:0; width:84px; pointer-events:none; z-index:2;
-  }
-  .top-ticker-wrap::before{ left:0; background:linear-gradient(90deg, #f2fbf4 0%, rgba(242,251,244,0) 100%); }
-  .top-ticker-wrap::after{ right:0; background:linear-gradient(270deg, #f2fbf4 0%, rgba(242,251,244,0) 100%); }
+    /* TOP TICKER (non-overlapping, fade masks) */
+    .top-ticker-wrap{
+      background:#f2fbf4;
+      height:44px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      position:relative;
+      border-bottom:1px solid rgba(43,138,62,0.06);
+    }
+    .top-ticker-wrap::before,
+    .top-ticker-wrap::after{
+      content:"";
+      position:absolute; top:0; bottom:0; width:84px; pointer-events:none; z-index:2;
+    }
+    .top-ticker-wrap::before{ left:0; background:linear-gradient(90deg, #f2fbf4 0%, rgba(242,251,244,0) 100%); }
+    .top-ticker-wrap::after{ right:0; background:linear-gradient(270deg, #f2fbf4 0%, rgba(242,251,244,0) 100%); }
 
-  .ticker {
-    display:flex;
-    gap:2.25rem;
-    padding-left:18px;
-    white-space:nowrap;
-    will-change:transform;
-    animation: tickerMove 20s linear infinite;
-    font-weight:700;
-    color:var(--green-700);
-    font-size:15px;
-    z-index:1;
-  }
-  .ticker.dup{ position:absolute; left:100%; top:0; height:100%; animation-delay:10s; }
+    .ticker {
+      display:flex;
+      gap:2.25rem;
+      padding-left:18px;
+      white-space:nowrap;
+      will-change:transform;
+      animation: tickerMove 20s linear infinite;
+      font-weight:700;
+      color:var(--green-700);
+      font-size:15px;
+      z-index:1;
+    }
+    .ticker.dup{ position:absolute; left:100%; top:0; height:100%; animation-delay:10s; }
 
-  @keyframes tickerMove{
-    0%{ transform:translateX(0) }
-    100%{ transform:translateX(-50%) } /* duplicated content -> seamless */
-  }
+    @keyframes tickerMove{
+      0%{ transform:translateX(0) }
+      100%{ transform:translateX(-50%) } /* duplicate text so seamless */
+    }
 
-  /* HEADER */
-  header{ position:sticky; top:0; background: #fff; z-index:60; border-bottom:1px solid rgba(43,138,62,0.06); box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-  .nav{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 18px; color:var(--green-600); }
-  .logo{ font-weight:900; font-size:1.5rem; color:var(--green-600); letter-spacing:0.6px; user-select:none; }
-  .logo sup{ font-size:0.5rem; vertical-align:super; margin-left:6px; color:var(--green-600) }
-  .nav-links{ display:flex; gap:18px; align-items:center; }
-  .nav-links a{ font-weight:700; color:var(--green-600); padding:6px 4px; }
-  .nav-links a:focus{ outline:3px solid rgba(43,138,62,0.12); border-radius:4px; }
-  .cta-donate{ background:var(--green-600); color:#fff; padding:10px 18px; border-radius:8px; box-shadow:var(--shadow); font-weight:900; border:0; }
-  .cta-donate:hover{ background:var(--green-700); cursor:pointer }
+    /* NAVIGATION */
+    header{ position:sticky; top:0; background: #fff; z-index:60; border-bottom:1px solid rgba(43,138,62,0.06); box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+    .nav{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:14px 18px; color:var(--green-600); }
+    .logo{ font-weight:900; font-size:1.5rem; color:var(--green-600); letter-spacing:0.5px; user-select:none; }
+    .logo sup{ font-size:0.45rem; vertical-align:super; margin-left:6px; color:var(--green-600); }
+    .nav-links{ display:flex; gap:18px; align-items:center; }
+    .nav-links a{ font-weight:700; color:var(--green-600); padding:6px 4px; }
+    .nav-links a:focus{ outline:3px solid rgba(43,138,62,0.12); border-radius:4px; }
+    .cta-donate{ background:var(--green-600); color:#fff; padding:10px 18px; border-radius:8px; box-shadow:var(--shadow); font-weight:900; border:0; cursor:pointer; }
+    .cta-donate:hover{ background:var(--green-700); }
 
-  /* HERO */
-  .hero{ height:520px; background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; }
-  .hero::before{ content:""; position:absolute; inset:0; background: rgba(11,61,11,0.58); z-index:0; }
-  .hero-inner{ position:relative; z-index:3; color:#fff; padding:0 20px; max-width:980px; }
-  .hero .word-slider{ font-size:36px; font-weight:900; color:var(--green-400); min-height:48px; margin-bottom:6px; user-select:none; }
-  .hero h1{ font-size:44px; margin:6px 0 12px; font-weight:900; text-shadow: 0 6px 18px rgba(0,0,0,0.45); }
-  .hero p{ font-size:18px; margin:0 0 18px; font-weight:600; text-shadow: 0 6px 14px rgba(0,0,0,0.35); }
-  .hero .btn{ background:var(--green-400); color:#0b2a0b; padding:12px 28px; border-radius:28px; font-weight:900; box-shadow:var(--shadow); border:0; cursor:pointer }
-  .hero .btn:hover{ background:var(--green-600); color:white }
+    /* HERO */
+    .hero{ height:520px; background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; }
+    .hero::before{ content:""; position:absolute; inset:0; background: rgba(11,61,11,0.58); z-index:0; }
+    .hero-inner{ position:relative; z-index:3; color:#fff; padding:0 20px; max-width:980px; }
+    .hero .word-slider{ font-size:36px; font-weight:900; color:var(--green-400); min-height:48px; margin-bottom:6px; user-select:none; }
+    .hero h1{ font-size:44px; margin:6px 0 12px; font-weight:900; text-shadow: 0 6px 18px rgba(0,0,0,0.45); }
+    .hero p{ font-size:18px; margin:0 0 18px; font-weight:600; text-shadow: 0 6px 14px rgba(0,0,0,0.35); }
+    .hero .btn{ background:var(--green-400); color:#0b2a0b; padding:12px 28px; border-radius:28px; font-weight:900; box-shadow:var(--shadow); border:0; cursor:pointer }
+    .hero .btn:hover{ background:var(--green-600); color:white }
 
-  main{ max-width:1100px; margin:36px auto; padding:0 18px; }
+    main{ max-width:1100px; margin:36px auto; padding:0 18px; }
 
-  /* reveal animations */
-  section{ margin-bottom:44px; opacity:1; transform:translateY(12px); transition:all 650ms cubic-bezier(.2,.9,.3,1); }
-  section.in-view{ opacity:1; transform:none }
+    /* REVEAL: only elements with .reveal animate; default visible otherwise */
+    .reveal{ opacity:0; transform:translateY(12px); transition:all 650ms cubic-bezier(.2,.9,.3,1); }
+    .reveal.in-view{ opacity:1; transform:none; }
 
-  .section-title{ font-size:28px; color:var(--green-700); margin-bottom:12px; display:inline-block; padding-bottom:6px; border-bottom:4px solid var(--green-400); }
+    .section-title{ font-size:28px; color:var(--green-700); margin-bottom:12px; display:inline-block; padding-bottom:6px; border-bottom:4px solid var(--green-400); }
 
-  /* ABOUT/TEAM */
-  .team-grid{ display:flex; gap:18px; flex-wrap:wrap; margin-top:12px; }
-  .team-card{ background:var(--muted); border-radius:12px; padding:16px; flex:1 1 280px; box-shadow:0 8px 20px rgba(43,138,62,0.06); }
+    /* TEAM */
+    .team-grid{ display:flex; gap:18px; flex-wrap:wrap; margin-top:12px; }
+    .team-card{ background:var(--muted); border-radius:12px; padding:16px; flex:1 1 280px; box-shadow:0 8px 20px rgba(43,138,62,0.06); }
 
-  /* PROGRAMS */
-  .programs-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
-  .program-card{ background:var(--muted); border-radius:12px; padding:16px; box-shadow:0 8px 20px rgba(43,138,62,0.06); }
-  .program-card h3{ margin:8px 0; font-size:20px; color:var(--green-600) }
+    /* PROGRAMS */
+    .programs-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .program-card{ background:var(--muted); border-radius:12px; padding:16px; box-shadow:0 8px 20px rgba(43,138,62,0.06); }
+    .program-card h3{ margin:8px 0; font-size:20px; color:var(--green-600) }
 
-  /* Testimonials (6) */
-  .testimonials-wrap{ max-width:920px; margin:0 auto; position:relative; }
-  .testimonial{ display:none; background:#f6ffef; padding:20px 22px; border-radius:12px; box-shadow:0 10px 28px rgba(43,138,62,0.06); color:var(--green-700); min-height:150px; }
-  .testimonial.active{ display:block; animation:fadeIn 700ms ease; }
-  @keyframes fadeIn{ from{opacity:1; transform:translateY(8px)} to{opacity:1; transform:none} }
-  .testimonial q{ font-style:italic; font-weight:800; display:block; color:var(--green-700); font-size:1.05rem; }
-  .testimonial .meta{ margin-top:10px; font-weight:700; color:var(--accent) }
-  .testimonial .more{ margin-top:10px; color:var(--accent); cursor:pointer; text-decoration:underline; background:none; border:0; font-weight:800; }
+    /* TESTIMONIALS */
+    .testimonials-wrap{ max-width:920px; margin:0 auto; position:relative; }
+    .testimonial{ display:none; background:#f6ffef; padding:20px 22px; border-radius:12px; box-shadow:0 10px 28px rgba(43,138,62,0.06); color:var(--green-700); min-height:150px; }
+    .testimonial.active{ display:block; animation:fadeIn 700ms ease; }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+    .testimonial q{ font-style:italic; font-weight:800; display:block; color:var(--green-700); font-size:1.05rem; }
+    .testimonial .meta{ margin-top:10px; font-weight:700; color:var(--accent) }
+    .testimonial .more{ margin-top:10px; color:var(--accent); cursor:pointer; text-decoration:underline; background:none; border:0; font-weight:800; }
+    .test-nav{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
+    .test-dot{ width:12px; height:12px; border-radius:50%; border:2px solid var(--green-700); background:transparent; cursor:pointer }
+    .test-dot.active{ background:var(--green-700) }
 
-  .test-nav{ display:flex; gap:8px; justify-content:center; margin-top:12px; }
-  .test-dot{ width:12px; height:12px; border-radius:50%; border:2px solid var(--green-700); background:transparent; cursor:pointer }
-  .test-dot.active{ background:var(--green-700) }
+    /* DONATION card & preview */
+    #donateCard{ background: linear-gradient(180deg,#f7fff7 0%, #f0fff0 100%); border-radius:14px; padding:22px; box-shadow:var(--shadow); border:1px solid rgba(43,138,62,0.06); }
+    #donateCard h2{ text-align:center; color:var(--green-700); margin-top:0; font-size:28px }
+    .label{ font-weight:800; margin:12px 0 6px; color:var(--green-700); display:block; }
+    .preset-amounts{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+    .amt-btn{ background:var(--green-400); color:#08321a; padding:8px 16px; border-radius:20px; border:0; font-weight:900; box-shadow:0 6px 12px rgba(43,138,62,0.08); cursor:pointer }
+    .amt-btn.active{ background:var(--green-600); color:#fff }
+    .input-full{ width:100%; padding:12px 12px; border-radius:8px; border:2px solid rgba(43,138,62,0.12); font-size:16px; box-sizing:border-box }
+    .card-row{ display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; align-items:center }
+    .card-row .card-number{ flex:1 1 60%; min-width:160px }
+    .card-row .card-exp{ flex:0 0 24%; min-width:100px }
+    .card-row .card-cvc{ flex:0 0 14%; min-width:70px }
+    .payment-note{ font-size:14px; color:var(--green-700); margin-top:10px }
+    .donate-submit{ margin-top:16px; background:var(--green-600); color:#fff; width:100%; padding:12px; font-weight:900; border-radius:28px; font-size:16px; border:0; cursor:pointer; box-shadow:0 10px 20px rgba(43,138,62,0.16) }
+    .donate-submit:hover{ background:var(--green-700) }
+    .error{ color:#c53030; font-weight:700; margin-top:8px; min-height:1.2em }
 
-  /* DONATION card: screenshot-like layout with card-row */
-  #donateCard{ background: linear-gradient(180deg,#f7fff7 0%, #f0fff0 100%); border-radius:14px; padding:22px; box-shadow:var(--shadow); border:1px solid rgba(43,138,62,0.06); }
-  #donateCard h2{ text-align:center; color:var(--green-700); margin-top:0; font-size:28px }
-  .label{ font-weight:800; margin:12px 0 6px; color:var(--green-700); display:block; }
-  .preset-amounts{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
-  .amt-btn{ background:var(--green-400); color:#08321a; padding:8px 16px; border-radius:20px; border:0; font-weight:900; box-shadow:0 6px 12px rgba(43,138,62,0.08); cursor:pointer }
-  .amt-btn.active{ background:var(--green-600); color:#fff }
-  .input-full{ width:100%; padding:12px 12px; border-radius:8px; border:2px solid rgba(43,138,62,0.12); font-size:16px; box-sizing:border-box }
-  .card-row{ display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; align-items:center }
-  .card-row .card-number{ flex:1 1 60%; min-width:160px }
-  .card-row .card-exp{ flex:0 0 24%; min-width:100px }
-  .card-row .card-cvc{ flex:0 0 14%; min-width:70px }
-  .payment-note{ font-size:14px; color:var(--green-700); margin-top:10px }
-  .donate-submit{ margin-top:16px; background:var(--green-600); color:#fff; width:100%; padding:12px; font-weight:900; border-radius:28px; font-size:16px; border:0; cursor:pointer; box-shadow:0 10px 20px rgba(43,138,62,0.16) }
-  .donate-submit:hover{ background:var(--green-700) }
-  .error{ color:#c53030; font-weight:700; margin-top:8px; min-height:1.2em }
+    .card-preview{
+      margin-top:12px;
+      background: linear-gradient(135deg,#0b3d0b 0%, #145214 100%);
+      color:white;
+      padding:12px;
+      border-radius:10px;
+      max-width:320px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .card-preview .brand{ width:64px; height:auto; }
+    .card-preview .meta{ font-weight:700; letter-spacing:1px; }
 
-  /* MAP */
-  .map-wrap iframe{ width:100%; height:320px; border:0; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.06) }
+    /* MAP */
+    .map-wrap iframe{ width:100%; height:320px; border:0; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.06) }
 
-  /* FOOTER */
-  footer{ background:#f2fbf4; padding:28px 16px; color:var(--green-700); text-align:center }
+    /* FOOTER */
+    footer{ background:#f2fbf4; padding:28px 16px; color:var(--green-700); text-align:center }
 
-  /* MODALS */
-  .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; z-index:2000; visibility:hidden; opacity:1; transition:all 260ms ease }
-  .modal-overlay.active{ visibility:visible; opacity:1 }
-  .modal{ background:#fff; border-radius:12px; padding:20px; max-width:520px; width:92%; box-shadow:0 18px 50px rgba(0,0,0,0.2) }
-  .modal h3{ margin-top:0; color:var(--green-700); font-size:20px }
-  .modal .modal-body{ margin-top:10px }
-  .modal .modal-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:16px }
+    /* MODALS */
+    .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.45); display:flex; align-items:center; justify-content:center; z-index:2000; visibility:hidden; opacity:0; transition:all 260ms ease }
+    .modal-overlay.active{ visibility:visible; opacity:1 }
+    .modal{ background:#fff; border-radius:12px; padding:20px; max-width:520px; width:92%; box-shadow:0 18px 50px rgba(0,0,0,0.2) }
+    .modal h3{ margin-top:0; color:var(--green-700); font-size:20px }
+    .modal .modal-body{ margin-top:10px }
+    .modal .modal-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:16px }
 
-  /* auth inputs inline */
-  .auth-row{ display:flex; gap:8px; align-items:center; }
-  .auth-row input{ flex:1; padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.12) }
-
-  /* small screens */
-  @media (max-width:760px){
-    .nav{ padding:10px 12px }
-    .hero h1{ font-size:30px }
-    .hero .word-slider{ font-size:28px }
-    .card-row{ flex-direction:column }
-    .card-row .card-number,.card-row .card-exp,.card-row .card-cvc{ width:100% }
-  }
-</style>
+    @media (max-width:760px){
+      .hero h1{ font-size:30px } .hero .word-slider{ font-size:28px }
+      .card-row{ flex-direction:column } .card-row .card-number,.card-row .card-exp,.card-row .card-cvc{ width:100% }
+      .card-preview{ max-width:100%; flex-direction:row }
+    }
+  </style>
 </head>
 <body>
 
-<!-- TOP TICKER -->
-<div class="top-ticker-wrap" aria-live="polite" aria-atomic="true">
-  <div class="ticker" id="ticker1">
-    <span>Finance literacy changes futures •</span>
-    <span>We donate finance education packs to schools •</span>
-    <span>Hands-on lessons & teacher training •</span>
-    <span>Empower youth with real-world money skills •</span>
-    <span>Partnering with Middlesex County schools •</span>
-    <span>Finance literacy changes futures •</span>
-  </div>
-  <div class="ticker dup" id="ticker2" aria-hidden="true">
-    <span>Finance literacy changes futures •</span>
-    <span>We donate finance education packs to schools •</span>
-    <span>Hands-on lessons & teacher training •</span>
-    <span>Empower youth with real-world money skills •</span>
-    <span>Partnering with Middlesex County schools •</span>
-    <span>Finance literacy changes futures •</span>
-  </div>
-</div>
-
-<!-- HEADER -->
-<header role="banner">
-  <div class="nav" role="navigation" aria-label="Primary navigation">
-    <div class="logo" aria-label="Future Fund Foundation logo">Future Fund Foundation<sup>™</sup></div>
-    <nav class="nav-links" aria-label="Main menu">
-      <a href="#about">About Us</a>
-      <a href="#programs">Programs</a>
-      <a href="#testimonials">What People Say</a>
-      <a href="#donate">Donate</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div style="display:flex;gap:10px;align-items:center">
-      <button class="cta-donate" id="openDonateModal">Donate Now</button>
-      <button class="cta-donate" id="openAuthModal" style="background:#fff;color:var(--green-600);border:2px solid var(--green-600);font-weight:800">Sign In</button>
+  <!-- TOP TICKER -->
+  <div class="top-ticker-wrap" aria-live="polite" aria-atomic="true">
+    <div class="ticker" id="ticker1">
+      <span>Finance literacy changes futures •</span>
+      <span>We donate finance education packs to schools •</span>
+      <span>Hands-on lessons & teacher training •</span>
+      <span>Empower youth with real-world money skills •</span>
+      <span>Partnering with Middlesex County, NJ schools •</span>
+      <span>Finance literacy changes futures •</span>
+    </div>
+    <div class="ticker dup" id="ticker2" aria-hidden="true">
+      <span>Finance literacy changes futures •</span>
+      <span>We donate finance education packs to schools •</span>
+      <span>Hands-on lessons & teacher training •</span>
+      <span>Empower youth with real-world money skills •</span>
+      <span>Partnering with Middlesex County, NJ schools •</span>
+      <span>Finance literacy changes futures •</span>
     </div>
   </div>
-</header>
 
-<!-- HERO -->
-<section class="hero" role="region" aria-label="Hero">
-  <div class="hero-inner">
-    <div class="word-slider" id="wordSlider" aria-live="polite">Empower</div>
-    <h1>Future Fund Foundation<sup style="font-size:0.5em;vertical-align:super;margin-left:6px;">™</sup></h1>
-    <p>We donate finance education packs to schools and equip students with practical money skills.</p>
-    <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
-  </div>
-</section>
+  <!-- HEADER -->
+  <header role="banner">
+    <div class="nav" role="navigation" aria-label="Primary Navigation">
+      <div class="logo" aria-label="Future Fund Foundation logo">Future Fund Foundation<sup>™</sup></div>
+      <nav class="nav-links" aria-label="Main Menu">
+        <a href="#about">About Us</a>
+        <a href="#programs">Programs</a>
+        <a href="#testimonials">What People Say</a>
+        <a href="#donate">Donate</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="cta-donate" id="openDonateModal">Donate Now</button>
+        <button class="cta-donate" id="openAuthModal" style="background:#fff;color:var(--green-600);border:2px solid var(--green-600);font-weight:800">Sign In</button>
+      </div>
+    </div>
+  </header>
 
-<main>
-  <!-- ABOUT -->
-  <section id="about" class="reveal">
-    <h2 class="section-title">About Us</h2>
-    <p style="max-width:900px;">Future Fund Foundation partners with schools to provide hands-on finance education. Our kits include lesson plans, activities, and teacher support so kids learn practical money skills that last.</p>
-    <div class="team-grid">
-      <div class="team-card"><h3>Adamya Bajpayee</h3><p>Driving the vision and strategy for financial education.</p></div>
-      <div class="team-card"><h3>Pranav Iswara</h3><p>Programs & outreach lead — connects with schools and communities.</p></div>
-      <div class="team-card"><h3>Rithvik Chintla</h3><p>Partnerships and content development to maximize impact.</p></div>
+  <!-- HERO -->
+  <section class="hero" role="region" aria-label="Hero">
+    <div class="hero-inner">
+      <div class="word-slider" id="wordSlider" aria-live="polite">Empower</div>
+      <h1>Future Fund Foundation<sup style="font-size:0.5em;vertical-align:super;margin-left:6px;">™</sup></h1>
+      <p>We donate finance education packs to schools and equip students with practical money skills.</p>
+      <button class="btn" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
     </div>
   </section>
 
-  <!-- PROGRAMS -->
-  <section id="programs" class="reveal">
-    <h2 class="section-title">Our Programs</h2>
-    <div class="programs-grid">
-      <div class="program-card">
-        <h3>📚 School Finance Kits</h3>
-        <p>We deliver age-appropriate finance packs with lesson plans teachers can use immediately.</p>
-        <button class="learn-more" data-target="p1">Learn More</button>
-        <div id="p1" class="program-details" hidden>Each kit contains printed materials, interactive activities, and online resources tailored for grades 3–8.</div>
+  <main>
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <h2 class="section-title">About Us</h2>
+      <p style="max-width:900px;">Future Fund Foundation partners with schools to provide hands-on finance education. Our kits include lesson plans, activities, and teacher support so kids learn practical money skills that last.</p>
+      <div class="team-grid">
+        <div class="team-card"><h3>Adamya Bajpayee</h3><p>Driving the vision and strategy for financial education.</p></div>
+        <div class="team-card"><h3>Pranav Iswara</h3><p>Programs & outreach lead — connects with schools and communities.</p></div>
+        <div class="team-card"><h3>Rithvik Chintla</h3><p>Partnerships and content development to maximize impact.</p></div>
       </div>
-      <div class="program-card">
-        <h3>🎓 Teacher Workshops</h3>
-        <p>Training sessions that help teachers deliver finance lessons confidently.</p>
-        <button class="learn-more" data-target="p2">Learn More</button>
-        <div id="p2" class="program-details" hidden>Workshops cover budgeting, saving, decision-making and offer classroom-ready activities and assessments.</div>
+    </section>
+
+    <!-- PROGRAMS -->
+    <section id="programs" class="reveal">
+      <h2 class="section-title">Our Programs</h2>
+      <div class="programs-grid">
+        <div class="program-card">
+          <h3>📚 School Finance Kits</h3>
+          <p>We deliver age-appropriate finance packs with lesson plans teachers can use immediately.</p>
+          <button class="learn-more" data-target="p1">Learn More</button>
+          <div id="p1" class="program-details" hidden>Each kit contains printed materials, interactive activities, and online resources tailored for grades 3–8.</div>
+        </div>
+        <div class="program-card">
+          <h3>🎓 Teacher Workshops</h3>
+          <p>Training sessions that help teachers deliver finance lessons confidently.</p>
+          <button class="learn-more" data-target="p2">Learn More</button>
+          <div id="p2" class="program-details" hidden>Workshops cover budgeting, saving, decision-making and offer classroom-ready activities and assessments.</div>
+        </div>
+        <div class="program-card">
+          <h3>💻 Online Resources</h3>
+          <p>Interactive modules and simulations for students and families.</p>
+          <button class="learn-more" data-target="p3">Learn More</button>
+          <div id="p3" class="program-details" hidden>Our portal offers quizzes, games, and progress tracking so learning continues outside the classroom.</div>
+        </div>
       </div>
-      <div class="program-card">
-        <h3>💻 Online Resources</h3>
-        <p>Interactive modules and simulations for students and families.</p>
-        <button class="learn-more" data-target="p3">Learn More</button>
-        <div id="p3" class="program-details" hidden>Our portal offers quizzes, games, and progress tracking so learning continues outside the classroom.</div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="reveal" aria-label="What People Say">
+      <h2 class="section-title">What People Say</h2>
+      <div class="testimonials-wrap" aria-live="polite">
+        <div class="testimonial active" id="test1">
+          <q>"The kits transformed our curriculum — students are more engaged."</q>
+          <div class="meta">— Principal Lisa M.</div>
+          <button class="more" data-target="t1">Read More</button>
+          <div id="t1" style="display:none;margin-top:8px;">After using the kits, students completed budgeting projects with new confidence and understanding.</div>
+        </div>
+        <div class="testimonial" id="test2">
+          <q>"Practical lessons made a huge difference for our middle school."</q>
+          <div class="meta">— Teacher Carlos B.</div>
+          <button class="more" data-target="t2">Read More</button>
+          <div id="t2" style="display:none;margin-top:8px;">Hands-on activities encouraged team collaboration and long-term retention of concepts.</div>
+        </div>
+        <div class="testimonial" id="test3">
+          <q>"Volunteering was rewarding — I saw kids gain confidence with money."</q>
+          <div class="meta">— Volunteer Jenna R.</div>
+          <button class="more" data-target="t3">Read More</button>
+          <div id="t3" style="display:none;margin-top:8px;">Workshops included role-play and simulations that children loved.</div>
+        </div>
+        <div class="testimonial" id="test4">
+          <q>"The online modules kept my child engaged outside school."</q>
+          <div class="meta">— Parent Priya S.</div>
+          <button class="more" data-target="t4">Read More</button>
+          <div id="t4" style="display:none;margin-top:8px;">Simulation games and real-life examples helped make money concepts tangible.</div>
+        </div>
+        <div class="testimonial" id="test5">
+          <q>"Partnerships with local schools made distribution seamless."</q>
+          <div class="meta">— District Coordinator Omar N.</div>
+          <button class="more" data-target="t5">Read More</button>
+          <div id="t5" style="display:none;margin-top:8px;">Coordination ensured kits reached classrooms efficiently with teacher buy-in.</div>
+        </div>
+        <div class="testimonial" id="test6">
+          <q>"Hands-on activities made finance real and relevant."</q>
+          <div class="meta">— Student Council Rep. Maya K.</div>
+          <button class="more" data-target="t6">Read More</button>
+          <div id="t6" style="display:none;margin-top:8px;">Students loved designing savings plans and tracking progress over a semester.</div>
+        </div>
+
+        <div class="test-nav" aria-hidden="false" style="margin-top:14px;">
+          <button class="test-dot active" data-i="0" aria-label="Show testimonial 1"></button>
+          <button class="test-dot" data-i="1" aria-label="Show testimonial 2"></button>
+          <button class="test-dot" data-i="2" aria-label="Show testimonial 3"></button>
+          <button class="test-dot" data-i="3" aria-label="Show testimonial 4"></button>
+          <button class="test-dot" data-i="4" aria-label="Show testimonial 5"></button>
+          <button class="test-dot" data-i="5" aria-label="Show testimonial 6"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="get-involved" class="reveal">
+      <h2 class="section-title">Get Involved</h2>
+      <div style="background:var(--muted); padding:18px; border-radius:12px; box-shadow:var(--shadow)">
+        <p style="font-weight:800">Volunteer, donate, or partner — help us place finance packs in more Middlesex County classrooms.</p>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <button class="cta-donate" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
+          <button style="background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:10px 16px;border-radius:8px;font-weight:800" onclick="document.getElementById('openAuthModal').click()">Sign Up</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE inline -->
+    <section id="donate" class="reveal" aria-label="Donate">
+      <div id="donateCard" aria-labelledby="donateTitle">
+        <h2 id="donateTitle">Make a Donation</h2>
+
+        <label class="label">Select Donation Amount</label>
+        <div class="preset-amounts" role="radiogroup" aria-label="Donation amounts">
+          <button class="amt-btn" data-amount="25">$25</button>
+          <button class="amt-btn" data-amount="50">$50</button>
+          <button class="amt-btn" data-amount="100">$100</button>
+          <button class="amt-btn" data-amount="custom">$ Custom</button>
+        </div>
+
+        <label class="label">Enter Custom Amount ($)</label>
+        <input id="custom-amount" class="input-full" type="number" min="1" placeholder="25" aria-label="Custom amount">
+
+        <label class="label">Your Name</label>
+        <input id="donor-name" class="input-full" type="text" placeholder="Full Name" autocomplete="name">
+
+        <label class="label">Email Address</label>
+        <input id="donor-email" class="input-full" type="email" placeholder="futurefundfoundation@gmail.com" autocomplete="email">
+
+        <label class="label">Payment Method</label>
+        <select id="payment-method" class="input-full" aria-label="Payment method">
+          <option value="card">Credit / Debit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="stripe">Stripe Checkout (recommended)</option>
+        </select>
+
+        <div class="payment-note">Choose your payment method to support finance education packs.</div>
+
+        <label class="label" style="margin-top:10px">Card Details</label>
+        <div class="card-row">
+          <input id="card-number" class="card-number input-full" type="text" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" maxlength="23">
+          <input id="card-exp" class="card-exp input-full" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp">
+          <input id="card-cvc" class="card-cvc input-full" type="text" placeholder="CVC" maxlength="4" autocomplete="cc-csc">
+        </div>
+
+        <!-- card preview that updates as user types -->
+        <div id="cardPreview" class="card-preview" style="display:none;">
+          <img id="previewBrand" class="brand" src="" alt="card brand" style="width:64px; height:auto;">
+          <div style="flex:1; text-align:right;">
+            <div class="meta" id="previewNumber">•••• •••• •••• ••••</div>
+            <div style="font-size:12px;opacity:0.9" id="previewExp">MM/YY</div>
+          </div>
+        </div>
+
+        <div id="payment-logo" aria-hidden="true" style="height:36px;margin-top:12px;background-repeat:no-repeat;background-size:contain"></div>
+        <div class="error" id="donation-error" role="alert" aria-live="assertive"></div>
+
+        <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
+          <button class="donate-submit" id="donateSubmit">Donate</button>
+          <button class="donate-submit" id="donateStripe" style="background:#0057ff">Stripe</button>
+          <button class="donate-submit" id="donatePayPal" style="background:#003087">PayPal</button>
+        </div>
+
+        <div style="font-size:13px;color:#2a7a2a;margin-top:12px">You will receive an email receipt. For support: <a href="mailto:futurefundfoundation@gmail.com">futurefundfoundation@gmail.com</a></div>
+      </div>
+    </section>
+
+    <!-- CONTACT & MAP -->
+    <section id="contact" class="reveal">
+      <h2 class="section-title">Contact & Location</h2>
+      <p>Future Fund Foundation — Middlesex County, New Jersey</p>
+      <div class="map-wrap" aria-hidden="false">
+        <iframe src="https://www.google.com/maps?q=Middlesex+County,+New+Jersey&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Middlesex County map"></iframe>
+      </div>
+      <p style="margin-top:12px;">Email: <a href="mailto:futurefundfoundation@gmail.com">futurefundfoundation@gmail.com</a> | Phone: <a href="tel:7328238071">732-823-8071</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width:1100px;margin:0 auto;padding:6px 18px;">
+      <div style="font-weight:900;color:var(--green-700);">Future Fund Foundation<sup>™</sup></div>
+      <p style="margin:8px 0;color:var(--green-700)">© 2025 Future Fund Foundation. All rights reserved.</p>
+      <p style="max-width:900px;margin:8px auto;color:var(--green-700);font-size:14px;">
+        <strong>Privacy (short):</strong> We collect basic donor and user information (name, email, donation amount, payment info via our payment provider) to process donations and send receipts. We do not sell personal data. By donating or signing up you agree to receive transactional emails and program updates. <a href="#" id="readMorePrivacy">Read More</a>
+      </p>
+      <p style="margin-top:8px;color:var(--green-700)">Middlesex County, New Jersey • <a href="#contact">Contact</a> • <a href="#programs">Programs</a></p>
+    </div>
+  </footer>
+
+  <!-- Donation Modal Popup (improved spacing) -->
+  <div id="donationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="donationModalTitle">
+    <div class="modal" role="document">
+      <button aria-label="Close" style="float:right;background:none;border:0;font-size:22px;color:var(--green-700)" onclick="closeDonationModal()">×</button>
+      <h3 id="donationModalTitle">Support Financial Education</h3>
+      <div class="modal-body">
+        <p style="margin:6px 0 10px;">Help us donate finance education packs to Middlesex County schools. Choose an amount and donate securely.</p>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+          <button class="amt-btn" data-amount="25" onclick="selectAmount(25)"> $25 </button>
+          <button class="amt-btn" data-amount="50" onclick="selectAmount(50)"> $50 </button>
+          <button class="amt-btn" data-amount="100" onclick="selectAmount(100)"> $100 </button>
+          <button class="amt-btn" data-amount="custom" onclick="selectAmount('custom')"> Custom </button>
+        </div>
+
+        <div style="display:flex;gap:10px;flex-direction:column;align-items:stretch">
+          <input id="modal-name" placeholder="Full name" class="input-full">
+          <input id="modal-email" placeholder="Email" class="input-full">
+          <input id="modal-amount" placeholder="Amount (USD)" type="number" class="input-full" min="1">
+          <select id="modal-method" class="input-full">
+            <option value="card">Credit/Debit Card</option>
+            <option value="paypal">PayPal</option>
+          </select>
+
+          <div id="modal-card-row" style="display:flex;gap:8px">
+            <input id="modal-card-number" placeholder="Card number" class="input-full" />
+            <input id="modal-card-exp" placeholder="MM/YY" class="input-full" style="width:100px" />
+            <input id="modal-card-cvc" placeholder="CVC" class="input-full" style="width:100px" />
+          </div>
+
+          <div id="modal-card-preview" class="card-preview" style="display:none;margin-top:8px;">
+            <img id="modal-brand" class="brand" src="" alt="">
+            <div style="flex:1;text-align:right;">
+              <div class="meta" id="modal-preview-number">•••• •••• •••• ••••</div>
+              <div style="font-size:12px;opacity:0.9" id="modal-preview-exp">MM/YY</div>
+            </div>
+          </div>
+
+          <div id="modal-error" class="error"></div>
+
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+            <button style="background:var(--green-600);color:#fff;padding:10px 14px;border-radius:8px;border:0" id="modalDonateBtn">Donate</button>
+            <button style="background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:10px 14px;border-radius:8px" onclick="closeDonationModal()">Cancel</button>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials" class="reveal" aria-label="What People Say">
-    <h2 class="section-title">What People Say</h2>
-    <div class="testimonials-wrap" aria-live="polite">
-      <div class="testimonial active" id="test1">
-        <q>"The kits transformed our curriculum — students are more engaged."</q>
-        <div class="meta">— Principal Lisa M.</div>
-        <button class="more" data-target="t1">Read More</button>
-        <div id="t1" style="display:none;margin-top:8px;">After using the kits, students completed budgeting projects with new confidence and understanding.</div>
-      </div>
-      <div class="testimonial" id="test2">
-        <q>"Practical lessons made a huge difference for our middle school."</q>
-        <div class="meta">— Teacher Carlos B.</div>
-        <button class="more" data-target="t2">Read More</button>
-        <div id="t2" style="display:none;margin-top:8px;">Hands-on activities encouraged team collaboration and long-term retention of concepts.</div>
-      </div>
-      <div class="testimonial" id="test3">
-        <q>"Volunteering was rewarding — I saw kids gain confidence with money."</q>
-        <div class="meta">— Volunteer Jenna R.</div>
-        <button class="more" data-target="t3">Read More</button>
-        <div id="t3" style="display:none;margin-top:8px;">Workshops included role-play and simulations that children loved.</div>
-      </div>
-      <div class="testimonial" id="test4">
-        <q>"The online modules kept my child engaged outside school."</q>
-        <div class="meta">— Parent Priya S.</div>
-        <button class="more" data-target="t4">Read More</button>
-        <div id="t4" style="display:none;margin-top:8px;">Simulation games and real-life examples helped make money concepts tangible.</div>
-      </div>
-      <div class="testimonial" id="test5">
-        <q>"Partnerships with local schools made distribution seamless."</q>
-        <div class="meta">— District Coordinator Omar N.</div>
-        <button class="more" data-target="t5">Read More</button>
-        <div id="t5" style="display:none;margin-top:8px;">Coordination ensured kits reached classrooms efficiently with teacher buy-in.</div>
-      </div>
-      <div class="testimonial" id="test6">
-        <q>"Hands-on activities made finance real and relevant."</q>
-        <div class="meta">— Student Council Rep. Maya K.</div>
-        <button class="more" data-target="t6">Read More</button>
-        <div id="t6" style="display:none;margin-top:8px;">Students loved designing savings plans and tracking progress over a semester.</div>
-      </div>
-
-      <div class="test-nav" aria-hidden="false" style="margin-top:14px;">
-        <button class="test-dot active" data-i="0" aria-label="Show testimonial 1"></button>
-        <button class="test-dot" data-i="1" aria-label="Show testimonial 2"></button>
-        <button class="test-dot" data-i="2" aria-label="Show testimonial 3"></button>
-        <button class="test-dot" data-i="3" aria-label="Show testimonial 4"></button>
-        <button class="test-dot" data-i="4" aria-label="Show testimonial 5"></button>
-        <button class="test-dot" data-i="5" aria-label="Show testimonial 6"></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- GET INVOLVED -->
-  <section id="get-involved" class="reveal">
-    <h2 class="section-title">Get Involved</h2>
-    <div style="background:var(--muted); padding:18px; border-radius:12px; box-shadow:var(--shadow)">
-      <p style="font-weight:800">Volunteer, donate, or partner — help us place finance packs in more Middlesex County classrooms.</p>
-      <div style="display:flex;gap:12px;margin-top:12px">
-        <button class="cta-donate" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'})">Donate Now</button>
-        <button style="background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:10px 16px;border-radius:8px;font-weight:800" onclick="document.getElementById('openAuthModal').click()">Sign Up</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- DONATE card inline (also modal donation exists) -->
-  <section id="donate" class="reveal" aria-label="Donate">
-    <div id="donateCard" aria-labelledby="donateTitle">
-      <h2 id="donateTitle">Make a Donation</h2>
-
-      <label class="label">Select Donation Amount</label>
-      <div class="preset-amounts" role="radiogroup" aria-label="Donation amounts">
-        <button class="amt-btn" data-amount="25">$25</button>
-        <button class="amt-btn" data-amount="50">$50</button>
-        <button class="amt-btn" data-amount="100">$100</button>
-        <button class="amt-btn" data-amount="custom">$ Custom</button>
-      </div>
-
-      <label class="label">Enter Custom Amount ($)</label>
-      <input id="custom-amount" class="input-full" type="number" min="1" placeholder="25" aria-label="Custom amount">
-
-      <label class="label">Your Name</label>
-      <input id="donor-name" class="input-full" type="text" placeholder="Full Name" autocomplete="name">
-
-      <label class="label">Email Address</label>
-      <input id="donor-email" class="input-full" type="email" placeholder="futurefundfoundation@gmail.com" autocomplete="email">
-
-      <label class="label">Payment Method</label>
-      <select id="payment-method" class="input-full" aria-label="Payment method">
-        <option value="card">Credit / Debit Card</option>
-        <option value="paypal">PayPal</option>
-        <option value="stripe">Stripe Checkout (recommended)</option>
-      </select>
-
-      <div class="payment-note">Choose your payment method to support finance education packs.</div>
-
-      <label class="label" style="margin-top:10px">Card Details</label>
-      <div class="card-row">
-        <input id="card-number" class="card-number input-full" type="text" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" maxlength="23">
-        <input id="card-exp" class="card-exp input-full" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp">
-        <input id="card-cvc" class="card-cvc input-full" type="text" placeholder="CVC" maxlength="4" autocomplete="cc-csc">
-      </div>
-
-      <div id="payment-logo" aria-hidden="true" style="height:36px;margin-top:12px;background-repeat:no-repeat;background-size:contain"></div>
-
-      <div class="error" id="donation-error" role="alert" aria-live="assertive"></div>
-
-      <div style="display:flex;gap:12px;margin-top:18px;align-items:center">
-        <button class="donate-submit" id="donateSubmit">Donate</button>
-        <button class="donate-submit" id="donateStripe" style="background:#0057ff">Stripe</button>
-        <button class="donate-submit" id="donatePayPal" style="background:#003087">PayPal</button>
-      </div>
-
-      <div style="font-size:13px;color:#2a7a2a;margin-top:12px">You will receive an email receipt. For support: <a href="mailto:futurefundfoundation@gmail.com">futurefundfoundation@gmail.com</a></div>
-    </div>
-  </section>
-
-  <!-- CONTACT & MAP -->
-  <section id="contact" class="reveal">
-    <h2 class="section-title">Contact & Location</h2>
-    <p>Future Fund Foundation — Middlesex County, New Jersey</p>
-    <div class="map-wrap" aria-hidden="false">
-      <iframe src="https://www.google.com/maps?q=Middlesex+County,+New+Jersey&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Middlesex County map"></iframe>
-    </div>
-    <p style="margin-top:12px;">Email: <a href="mailto:futurefundfoundation@gmail.com">futurefundfoundation@gmail.com</a> | Phone: <a href="tel:7328238071">732-823-8071</a></p>
-  </section>
-
-</main>
-
-<footer>
-  <div style="max-width:1100px;margin:0 auto;padding:6px 18px;">
-    <div style="font-weight:900;color:var(--green-700);">Future Fund Foundation<sup>™</sup></div>
-    <p style="margin:8px 0;color:var(--green-700)">© 2025 Future Fund Foundation. All rights reserved.</p>
-    <p style="max-width:900px;margin:8px auto;color:var(--green-700);font-size:14px;">
-      <strong>Privacy (short):</strong> We collect basic donor and user information (name, email, donation amount, payment details via our payment provider) to process donations, send receipts, and improve our programs. We do not sell personal data. By donating or signing up you agree to receive transactional emails and program updates. <a href="#" id="readMorePrivacy">Read More</a>
-    </p>
-    <p style="margin-top:8px;color:var(--green-700)">Middlesex County, New Jersey • <a href="#contact">Contact</a> • <a href="#programs">Programs</a></p>
   </div>
-</footer>
 
-<!-- MODALS -->
-<div id="donationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="donationModalTitle">
-  <div class="modal" role="document">
-    <button aria-label="Close" style="float:right;background:none;border:0;font-size:22px;color:var(--green-700)" onclick="closeDonationModal()">×</button>
-    <h3 id="donationModalTitle">Support Financial Education</h3>
-    <div class="modal-body">
-      <p style="margin:6px 0 10px;">Help us donate finance education packs to Middlesex County schools. Choose an amount and donate securely.</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="amt-btn" data-amount="25" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});closeDonationModal();">$25</button>
-        <button class="amt-btn" data-amount="50" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});closeDonationModal();">$50</button>
-        <button class="amt-btn" data-amount="100" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});closeDonationModal();">$100</button>
+  <!-- Auth Modal (demo sign up / login) -->
+  <div id="authModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+    <div class="modal" role="document">
+      <button aria-label="Close" style="float:right;background:none;border:0;font-size:22px;color:var(--green-700)" onclick="closeAuthModal()">×</button>
+      <h3 id="authModalTitle">Sign Up / Log In</h3>
+      <div class="modal-body">
+        <div style="display:flex;gap:8px;margin-bottom:10px">
+          <button id="showSignup" style="flex:1;background:var(--green-600);color:#fff;padding:8px;border-radius:8px;border:0">Sign Up</button>
+          <button id="showLogin" style="flex:1;background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:8px;border-radius:8px">Log In</button>
+        </div>
+        <form id="signupForm" style="display:none">
+          <input id="su-name" placeholder="Full name" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
+          <input id="su-email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
+          <input id="su-pass" type="password" placeholder="Password" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
+          <div style="display:flex;justify-content:flex-end"><button type="button" style="background:var(--green-600);color:#fff;padding:8px 12px;border-radius:8px;border:0" id="doSignup">Create account</button></div>
+        </form>
+        <form id="loginForm" style="display:none">
+          <input id="li-email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
+          <input id="li-pass" type="password" placeholder="Password" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
+          <div style="display:flex;justify-content:flex-end"><button type="button" style="background:var(--green-600);color:#fff;padding:8px 12px;border-radius:8px;border:0" id="doLogin">Log in</button></div>
+        </form>
+        <div id="auth-msg" style="margin-top:8px;font-weight:700;color:var(--green-700)"></div>
       </div>
     </div>
-    <div class="modal-actions">
-      <button style="background:var(--green-600);color:#fff;padding:8px 12px;border-radius:8px;border:0" onclick="document.getElementById('donate').scrollIntoView({behavior:'smooth'});closeDonationModal()">Donate Now</button>
-      <button style="background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:8px 12px;border-radius:8px" onclick="closeDonationModal()">Close</button>
-    </div>
   </div>
-</div>
 
-<div id="authModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
-  <div class="modal" role="document">
-    <button aria-label="Close" style="float:right;background:none;border:0;font-size:22px;color:var(--green-700)" onclick="closeAuthModal()">×</button>
-    <h3 id="authModalTitle">Sign Up / Log In</h3>
-    <div class="modal-body">
-      <div style="display:flex;gap:8px;margin-bottom:10px">
-        <button id="showSignup" style="flex:1;background:var(--green-600);color:#fff;padding:8px;border-radius:8px;border:0">Sign Up</button>
-        <button id="showLogin" style="flex:1;background:#fff;border:2px solid var(--green-600);color:var(--green-600);padding:8px;border-radius:8px">Log In</button>
-      </div>
-      <form id="signupForm" style="display:none">
-        <input id="su-name" placeholder="Full name" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
-        <input id="su-email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
-        <input id="su-pass" type="password" placeholder="Password" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
-        <div style="display:flex;justify-content:flex-end"><button type="button" style="background:var(--green-600);color:#fff;padding:8px 12px;border-radius:8px;border:0" id="doSignup">Create account</button></div>
-      </form>
-      <form id="loginForm" style="display:none">
-        <input id="li-email" placeholder="Email" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
-        <input id="li-pass" type="password" placeholder="Password" style="width:100%;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid #ddd">
-        <div style="display:flex;justify-content:flex-end"><button type="button" style="background:var(--green-600);color:#fff;padding:8px 12px;border-radius:8px;border:0" id="doLogin">Log in</button></div>
-      </form>
-      <div id="auth-msg" style="margin-top:8px;font-weight:700;color:var(--green-700)"></div>
-    </div>
-  </div>
-</div>
+  <!-- Optional: PayPal SDK & Stripe comments left as placeholders (no keys included) -->
 
-<!-- Optional: PayPal SDK & Stripe (commented placeholders) -->
-<!--
-  To enable PayPal buttons in JS: add your client-id below and uncomment PayPal script
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD"></script>
+  <script>
+    /* ----------------------
+       WORD SLIDER (1.5s)
+    ------------------------*/
+    const heroWords = ['Educate','Inspire','Empower','Transform','Support'];
+    let hwIndex = 0;
+    const wordEl = document.getElementById('wordSlider');
+    setInterval(()=>{ hwIndex=(hwIndex+1)%heroWords.length; wordEl.textContent=heroWords[hwIndex]; }, 1500);
 
-  For Stripe Checkout integration, include:
-  <script src="https://js.stripe.com/v3/"></script>
-  Then call stripe.redirectToCheckout({ sessionId }) with a session created on your server.
--->
+    /* TICKER hover pause */
+    document.querySelectorAll('.top-ticker-wrap').forEach(el=>{
+      el.addEventListener('mouseenter', ()=> document.querySelectorAll('.ticker').forEach(t=> t.style.animationPlayState='paused'));
+      el.addEventListener('mouseleave', ()=> document.querySelectorAll('.ticker').forEach(t=> t.style.animationPlayState='running'));
+    });
 
-<script>
-/* ----------------------
-  WORD SLIDER (1.5s per word)
-------------------------*/
-const heroWords = ['Educate','Inspire','Empower','Transform','Support'];
-let hwIndex = 0;
-const wordEl = document.getElementById('wordSlider');
-setInterval(()=>{ hwIndex=(hwIndex+1)%heroWords.length; wordEl.textContent=heroWords[hwIndex]; }, 1500);
+    /* REVEAL ON SCROLL (only for elements with .reveal) */
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(s=> observer.observe(s));
 
-/* ----------------------
-  TICKER pause on hover
-------------------------*/
-document.querySelectorAll('.top-ticker-wrap').forEach(el=>{
-  el.addEventListener('mouseenter', ()=> document.querySelectorAll('.ticker').forEach(t=> t.style.animationPlayState='paused'));
-  el.addEventListener('mouseleave', ()=> document.querySelectorAll('.ticker').forEach(t=> t.style.animationPlayState='running'));
-});
+    /* PROGRAMS: Learn More toggles */
+    document.querySelectorAll('.learn-more').forEach(btn=>{
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const el = document.getElementById(id);
+        if(!el) return;
+        const isHidden = el.hidden;
+        el.hidden = !isHidden;
+        btn.textContent = isHidden ? 'Show Less' : 'Learn More';
+      });
+    });
 
-/* ----------------------
-  Reveal on scroll
-------------------------*/
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add('in-view');
-  });
-},{threshold:0.12});
-document.querySelectorAll('main section').forEach(s=> io.observe(s));
-
-/* ----------------------
-  Programs learn more toggles
-------------------------*/
-document.querySelectorAll('.learn-more').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const id = btn.dataset.target;
-    const el = document.getElementById(id);
-    if(!el) return;
-    const nowHidden = el.hidden;
-    el.hidden = !nowHidden;
-    btn.textContent = nowHidden ? 'Show Less' : 'Learn More';
-  });
-});
-
-/* ----------------------
-  Testimonials cycling & controls
-------------------------*/
-const testimonials = Array.from(document.querySelectorAll('.testimonial'));
-const dots = Array.from(document.querySelectorAll('.test-dot'));
-let tIndex = 0;
-function showTestimonial(i){
-  testimonials.forEach((t,idx)=> t.classList.toggle('active', idx===i));
-  dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
-  tIndex = i;
-}
-dots.forEach(d=> d.addEventListener('click', ()=> showTestimonial(parseInt(d.dataset.i))));
-showTestimonial(0);
-// auto-cycle
-setInterval(()=> showTestimonial((tIndex+1)%testimonials.length), 7000);
-// Read more toggles in testimonials
-document.querySelectorAll('.more').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const id = btn.dataset.target;
-    const el = document.getElementById(id);
-    if(!el) return;
-    const visible = el.style.display !== 'none';
-    el.style.display = visible ? 'none' : 'block';
-    btn.textContent = visible ? 'Read More' : 'Show Less';
-  });
-});
-
-/* ----------------------
-  Donation: amounts, card brand detection, validation (Luhn)
-------------------------*/
-const amtBtns = Array.from(document.querySelectorAll('.amt-btn'));
-const customInput = document.getElementById('custom-amount');
-amtBtns.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    amtBtns.forEach(b=> b.classList.remove('active'));
-    btn.classList.add('active');
-    if(btn.dataset.amount === 'custom'){
-      customInput.value='';
-      customInput.focus();
-    } else {
-      customInput.value = btn.dataset.amount;
+    /* TESTIMONIALS */
+    const testimonials = Array.from(document.querySelectorAll('.testimonial'));
+    const dots = Array.from(document.querySelectorAll('.test-dot'));
+    let tIdx = 0;
+    function showTestimonial(i){
+      testimonials.forEach((slide, idx)=> slide.classList.toggle('active', idx===i));
+      dots.forEach((d, idx)=> d.classList.toggle('active', idx===i));
+      tIdx = i;
     }
-  });
-});
-// default $25
-amtBtns[0].click();
+    dots.forEach(d=> d.addEventListener('click', ()=> showTestimonial(parseInt(d.dataset.i))));
+    showTestimonial(0);
+    setInterval(()=> showTestimonial((tIdx+1) % testimonials.length), 7000);
+    document.querySelectorAll('.more').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.dataset.target;
+        const el = document.getElementById(id);
+        if(!el) return;
+        const visible = el.style.display !== 'none';
+        el.style.display = visible ? 'none' : 'block';
+        btn.textContent = visible ? 'Read More' : 'Show Less';
+      });
+    });
 
-const cardNumber = document.getElementById('card-number');
-const paymentLogo = document.getElementById('payment-logo');
-const paymentMethod = document.getElementById('payment-method');
+    /* DONATION: amount buttons, payment detection & validation */
+    const amtButtons = Array.from(document.querySelectorAll('.amt-btn'));
+    const customAmountInput = document.getElementById('custom-amount');
+    amtButtons.forEach((btn)=>{
+      btn.addEventListener('click', ()=>{
+        amtButtons.forEach(b=> b.classList.remove('active'));
+        btn.classList.add('active');
+        if(btn.dataset.amount === 'custom'){ customAmountInput.value=''; customAmountInput.focus(); } 
+        else { customAmountInput.value = btn.dataset.amount; }
+      });
+    });
+    // default select $25
+    amtButtons[0].click();
 
-cardNumber.addEventListener('input', ()=>{
-  const n = cardNumber.value.replace(/\D/g,'');
-  let url='';
-  if(/^4/.test(n)) url='https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg';
-  else if(/^5[1-5]/.test(n)) url='https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg';
-  else if(/^3[47]/.test(n)) url='https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg';
-  else url = paymentMethod.value==='paypal' ? "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" : '';
-  paymentLogo.style.backgroundImage = url ? url(${url}) : 'none';
-});
-paymentMethod.addEventListener('change', ()=>{
-  if(paymentMethod.value === 'paypal'){
-    paymentLogo.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg')";
-  } else if(paymentMethod.value === 'stripe'){
-    paymentLogo.style.backgroundImage = "url('https://upload.wikimedia.org/wikipedia/commons/6/6a/Stripe_Logo%2C_reversed.svg')";
-  } else {
-    paymentLogo.style.backgroundImage = 'none';
-  }
-});
+    const paymentMethodSelect = document.getElementById('payment-method');
+    const paymentLogoDiv = document.getElementById('payment-logo');
+    const cardNumberInput = document.getElementById('card-number');
+    const cardExpInput = document.getElementById('card-exp');
+    const cardCvcInput = document.getElementById('card-cvc');
 
-// Luhn check
-function luhnCheck(val){
-  const s = val.replace(/\D/g,'');
-  let sum=0, alt=false;
-  for(let i=s.length-1;i>=0;i--){
-    let n=parseInt(s.charAt(i),10);
-    if(alt){ n*=2; if(n>9) n-=9; }
-    sum+=n;
-    alt=!alt;
-  }
-  return (sum%10)===0;
-}
-
-/* Basic expiry check MM/YY */
-function validExpiry(exp){
-  if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)) return false;
-  const parts = exp.split('/');
-  const month = parseInt(parts[0],10);
-  const year = 2000 + parseInt(parts[1],10);
-  const now = new Date();
-  const eom = new Date(year, month, 0, 23, 59, 59);
-  return eom >= now;
-}
-
-/* Donation submit (front-end) + placeholders for Stripe/PayPal integration */
-document.getElementById('donateSubmit').addEventListener('click', (e)=>{
-  e.preventDefault();
-  const name = (document.getElementById('donor-name').value||'').trim();
-  const email = (document.getElementById('donor-email').value||'').trim();
-  const amount = parseFloat(document.getElementById('custom-amount').value) || 0;
-  const pm = paymentMethod.value || 'card';
-  const cn = (cardNumber.value||'').replace(/\s+/g,'');
-  const exp = (document.getElementById('card-exp').value||'').trim();
-  const cvc = (document.getElementById('card-cvc').value||'').trim();
-  const err = document.getElementById('donation-error');
-  err.textContent=''; err.style.color='#c53030';
-  if(!name){ err.textContent='Please enter your full name.'; return; }
-  if(!email || !email.includes('@')){ err.textContent='Please enter a valid email.'; return; }
-  if(!(amount>0)){ err.textContent='Please enter a donation amount.'; return; }
-  if(pm==='card'){
-    if(!/^\d{13,19}$/.test(cn) || !luhnCheck(cn)){ err.textContent='Please enter a valid card number.'; return; }
-    if(!validExpiry(exp)){ err.textContent='Please enter a valid expiry (MM/YY).' ; return; }
-    if(!/^\d{3,4}$/.test(cvc)){ err.textContent='Please enter a valid CVC.'; return; }
-  }
-  // At this point front-end validation passed. Next: send to payment processor.
-  // We simulate success for demo:
-  err.style.color='green';
-  err.textContent=Thank you, ${name}! Donation of $${amount.toFixed(2)} received (simulation).;
-  // Clear form after a moment
-  setTimeout(()=>{ err.textContent=''; document.getElementById('donor-name').value=''; document.getElementById('donor-email').value=''; document.getElementById('custom-amount').value=''; cardNumber.value=''; document.getElementById('card-exp').value=''; document.getElementById('card-cvc').value=''; paymentLogo.style.backgroundImage='none'; },3000);
-});
-
-/* Stripe / PayPal Buttons placeholders
-  - Stripe: use stripe.redirectToCheckout or Stripe Elements. You need to create a Checkout Session on your server and return the sessionId.
-    Example (server): create /create-checkout-session returning session.id
-    Client:
-      const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY');
-      stripe.redirectToCheckout({ sessionId: '...' });
-
-  - PayPal: include SDK with your client-id and render buttons calling your server to create an order or capture client-side.
-    Example:
-      paypal.Buttons({ createOrder: (data, actions) => { /* create order on server * /}, onApprove: (data, actions) => { /* capture */ } }).render('#paypal-button');
-
-  I included 2 extra buttons (Stripe and PayPal) that you can hook up below.
-*/
-
-/* Stripe button example (calls server endpoint) */
-document.getElementById('donateStripe').addEventListener('click', ()=>{
-  // TODO: Replace with your server endpoint that creates a Stripe Checkout Session
-  // fetch('/create-checkout-session', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({amount: parseFloat(document.getElementById('custom-amount').value)||25, email: document.getElementById('donor-email').value }) })
-  //  .then(r=>r.json()).then(data=> stripe.redirectToCheckout({ sessionId: data.sessionId }));
-  alert('Stripe Checkout placeholder clicked. Implement server-side session creation and Stripe publishable key to enable.');
-});
-
-/* PayPal button example (open popup or redirect to paypal) */
-document.getElementById('donatePayPal').addEventListener('click', ()=>{
-  // TODO: Implement PayPal Buttons/Orders flow using your PayPal client ID or server-side create/order endpoint
-  alert('PayPal placeholder clicked. Add PayPal SDK and server integration to process real payments.');
-});
-
-/* ----------------------
-  Popup donation modal open on load
-------------------------*/
-const donationModal = document.getElementById('donationModal');
-function openDonationModal(){ donationModal.classList.add('active'); }
-function closeDonationModal(){ donationModal.classList.remove('active'); }
-document.getElementById('openDonateModal').addEventListener('click', openDonationModal);
-window.addEventListener('load', ()=> setTimeout(openDonationModal, 1600));
-
-/* ----------------------
-  Auth modal & demo sign-up / login using localStorage
-  NOTE: This is a local demo implementation. For production use secure server-side auth (hashing, salting, secure storage, email verification).
-------------------------*/
-const authModal = document.getElementById('authModal');
-const showSignup = document.getElementById('showSignup');
-const showLogin = document.getElementById('showLogin');
-const signupForm = document.getElementById('signupForm');
-const loginForm = document.getElementById('loginForm');
-const doSignup = document.getElementById('doSignup');
-const doLogin = document.getElementById('doLogin');
-const authMsg = document.getElementById('auth-msg');
-document.getElementById('openAuthModal').addEventListener('click', ()=> { authModal.classList.add('active'); showSignup.click(); });
-
-function closeAuthModal(){ authModal.classList.remove('active'); authMsg.textContent=''; }
-
-showSignup.addEventListener('click', ()=> { signupForm.style.display='block'; loginForm.style.display='none'; authMsg.textContent=''; });
-showLogin.addEventListener('click', ()=> { signupForm.style.display='none'; loginForm.style.display='block'; authMsg.textContent=''; });
-
-// simple "user store" in localStorage: { users: { email: {name, email, pass} } }
-function getUserStore(){ return JSON.parse(localStorage.getItem('fff_users')||'{}'); }
-function saveUserStore(s){ localStorage.setItem('fff_users', JSON.stringify(s)); }
-
-doSignup.addEventListener('click', ()=>{
-  const name = document.getElementById('su-name').value.trim();
-  const email = document.getElementById('su-email').value.trim().toLowerCase();
-  const pass = document.getElementById('su-pass').value;
-  if(!name || !email || !pass){ authMsg.style.color='red'; authMsg.textContent='Please fill all fields.'; return; }
-  const store = getUserStore();
-  if(store[email]){ authMsg.style.color='red'; authMsg.textContent='Account already exists. Please log in.'; return; }
-  // NOTE: storing plaintext password in localStorage is insecure. This is for demo only.
-  store[email] = { name, email, pass };
-  saveUserStore(store);
-  authMsg.style.color='green'; authMsg.textContent='Account created. You are signed in (demo).';
-  setTimeout(()=> closeAuthModal(), 900);
-});
-
-doLogin.addEventListener('click', ()=>{
-  const email = document.getElementById('li-email').value.trim().toLowerCase();
-  const pass = document.getElementById('li-pass').value;
-  const store = getUserStore();
-  if(!store[email] || store[email].pass !== pass){ authMsg.style.color='red'; authMsg.textContent='Invalid credentials.'; return; }
-  authMsg.style.color='green'; authMsg.textContent=Welcome back, ${store[email].name} (demo).;
-  setTimeout(()=> closeAuthModal(), 900);
-});
-
-// close modals with Escape
-document.addEventListener('keydown', e=> {
-  if(e.key==='Escape'){ if(donationModal.classList.contains('active')) closeDonationModal(); if(authModal.classList.contains('active')) closeAuthModal(); }
-});
-
-/* Focus trap (minimal) when modal open - optional improvements can be added */
-[donationModal, authModal].forEach(modal=>{
-  modal.addEventListener('keydown', e=>{
-    if(e.key==='Tab'){
-      // light focus trap could be implemented here
+    function setPaymentLogo(url){
+      paymentLogoDiv.style.backgroundImage = url ? `url(${url})` : 'none';
     }
-  });
-});
 
-/* small UX: show donation amounts on modal click */
-document.querySelectorAll('#donationModal .amt-btn').forEach(b=>{
-  b.addEventListener('click', ()=>{
-    document.querySelectorAll('.amt-btn').forEach(x=> x.classList.remove('active'));
-    const target = Array.from(document.querySelectorAll('.amt-btn')).find(x=> x.dataset.amount === b.dataset.amount);
-    if(target){ target.classList.add('active'); customInput.value = b.dataset.amount; }
-  });
-});
+    paymentMethodSelect.addEventListener('change', ()=>{
+      const v = paymentMethodSelect.value;
+      if(v === 'paypal'){
+        setPaymentLogo("https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg");
+      } else if(v === 'stripe'){
+        setPaymentLogo("https://upload.wikimedia.org/wikipedia/commons/6/6a/Stripe_Logo%2C_reversed.svg");
+      } else {
+        setPaymentLogo(null);
+      }
+    });
 
-/* Privacy "Read More" placeholder */
-document.getElementById('readMorePrivacy').addEventListener('click', (e)=>{
-  e.preventDefault();
-  alert('Privacy page placeholder — link this to your full privacy policy page when ready.');
-});
+    /* Card brand detection + preview update */
+    const preview = document.getElementById('cardPreview');
+    const previewBrand = document.getElementById('previewBrand');
+    const previewNumber = document.getElementById('previewNumber');
+    const previewExp = document.getElementById('previewExp');
 
-/* Prevent default form submits that might refresh page */
-document.querySelectorAll('form').forEach(f=> f.addEventListener('submit', e=> e.preventDefault()));
+    function detectCardBrand(num){
+      const s = num.replace(/\D/g,'');
+      if(/^4/.test(s)) return {name:'visa', url:'https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg'};
+      if(/^5[1-5]/.test(s)) return {name:'mastercard', url:'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg'};
+      if(/^3[47]/.test(s)) return {name:'amex', url:'https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg'};
+      return null;
+    }
+    function maskCardNumber(num){
+      const s = num.replace(/\D/g,'');
+      if(!s) return '•••• •••• •••• ••••';
+      // show last 4, mask others
+      const last4 = s.slice(-4);
+      return '•••• •••• •••• ' + last4;
+    }
+    cardNumberInput.addEventListener('input', ()=>{
+      const brand = detectCardBrand(cardNumberInput.value);
+      if(brand){ previewBrand.src = brand.url; preview.style.display = 'flex'; } else { previewBrand.src=''; preview.style.display = cardNumberInput.value.trim() ? 'flex' : 'none'; }
+      previewNumber.textContent = maskCardNumber(cardNumberInput.value);
+      // also set payment logo small
+      setPaymentLogo(brand ? brand.url : (paymentMethodSelect.value==='paypal' ? "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" : null));
+    });
+    cardExpInput.addEventListener('input', ()=> {
+      previewExp.textContent = cardExpInput.value || 'MM/YY';
+    });
 
-</script>
+    /* Validation helpers */
+    function luhnCheck(val){
+      const s = val.replace(/\D/g,'');
+      let sum=0, alt=false;
+      for(let i=s.length-1;i>=0;i--){
+        let n=parseInt(s.charAt(i),10);
+        if(alt){ n*=2; if(n>9) n-=9; }
+        sum+=n; alt=!alt;
+      }
+      return (sum%10)===0;
+    }
+    function validExpiry(exp){
+      if(!/^(0[1-9]|1[0-2])\/\d{2}$/.test(exp)) return false;
+      const parts = exp.split('/');
+      const month = parseInt(parts[0],10);
+      const year = 2000 + parseInt(parts[1],10);
+      const now = new Date();
+      const eom = new Date(year, month, 0, 23, 59, 59);
+      return eom >= now;
+    }
+
+    /* Donation submit (front-end simulation) */
+    document.getElementById('donateSubmit').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const name = (document.getElementById('donor-name').value||'').trim();
+      const email = (document.getElementById('donor-email').value||'').trim();
+      const amount = parseFloat(document.getElementById('custom-amount').value) || 0;
+      const method = paymentMethodSelect.value || 'card';
+      const cn = (cardNumberInput.value||'').replace(/\s+/g,'');
+      const exp = (cardExpInput.value||'').trim();
+      const cvc = (cardCvcInput.value||'').trim();
+      const err = document.getElementById('donation-error');
+      err.textContent=''; err.style.color='#c53030';
+      if(!name){ err.textContent='Please enter your full name.'; return; }
+      if(!email || !email.includes('@')){ err.textContent='Please enter a valid email.'; return; }
+      if(!(amount>0)){ err.textContent='Please enter a donation amount.'; return; }
+      if(method==='card'){
+        if(!/^\d{13,19}$/.test(cn) || !luhnCheck(cn)){ err.textContent='Please enter a valid card number.'; return; }
+        if(!validExpiry(exp)){ err.textContent='Please enter a valid expiry (MM/YY).' ; return; }
+        if(!/^\d{3,4}$/.test(cvc)){ err.textContent='Please enter a valid CVC.'; return; }
+      }
+      // TODO: send to payment processor (Stripe/PayPal)
+      err.style.color='green';
+      err.textContent=`Thank you, ${name}! Donation of $${amount.toFixed(2)} received (simulation).`;
+      setTimeout(()=>{ err.textContent=''; document.getElementById('donor-name').value=''; document.getElementById('donor-email').value=''; document.getElementById('custom-amount').value=''; cardNumberInput.value=''; cardExpInput.value=''; cardCvcInput.value=''; paymentLogoDiv.style.backgroundImage='none'; preview.style.display='none'; amtButtons.forEach(b=> b.classList.remove('active')); amtButtons[0].classList.add('active'); document.getElementById('donate').scrollIntoView({behavior:'smooth'}); },3000);
+    });
+
+    /* Stripe / PayPal placeholders */
+    document.getElementById('donateStripe').addEventListener('click', ()=>{
+      alert('Stripe Checkout placeholder clicked. Implement server-side session creation + publishable key to enable real payments.');
+    });
+    document.getElementById('donatePayPal').addEventListener('click', ()=>{
+      alert('PayPal placeholder clicked. Add PayPal SDK & integration to enable real payments.');
+    });
+
+    /* Donation modal logic (improved spacing) */
+    const donationModal = document.getElementById('donationModal');
+    function openDonationModal(){ donationModal.classList.add('active'); donationModal.focus(); }
+    function closeDonationModal(){ donationModal.classList.remove('active'); }
+    document.getElementById('openDonateModal').addEventListener('click', openDonationModal);
+    // auto open on load (small delay)
+    window.addEventListener('load', ()=> setTimeout(openDonationModal, 1400));
+    donationModal.addEventListener('keydown', e=> { if(e.key==='Escape') closeDonationModal(); });
+
+    // modal inner logic: amount selection and card preview
+    function selectAmount(a){ document.getElementById('modal-amount').value = a==='custom' ? '' : a; document.querySelectorAll('.amt-btn').forEach(b=> b.classList.remove('active')); const found = Array.from(document.querySelectorAll('.amt-btn')).find(x => x.dataset.amount==a); if(found) found.classList.add('active'); }
+    document.getElementById('modal-card-number').addEventListener('input', ()=>{
+      const v = document.getElementById('modal-card-number').value;
+      const brand = detectCardBrand(v);
+      const modalPreview = document.getElementById('modal-card-preview');
+      const modalBrand = document.getElementById('modal-brand');
+      const modalNumber = document.getElementById('modal-preview-number');
+      if(brand){ modalBrand.src = brand.url; modalPreview.style.display='flex'; } else { modalPreview.style.display = v.trim() ? 'flex' : 'none'; modalBrand.src=''; }
+      modalNumber.textContent = maskCardNumber(v);
+    });
+    document.getElementById('modal-card-exp').addEventListener('input', ()=> { document.getElementById('modal-preview-exp').textContent = document.getElementById('modal-card-exp').value || 'MM/YY'; });
+
+    document.getElementById('modalDonateBtn').addEventListener('click', ()=>{
+      const name = (document.getElementById('modal-name').value||'').trim();
+      const email = (document.getElementById('modal-email').value||'').trim();
+      const amount = parseFloat(document.getElementById('modal-amount').value) || 0;
+      const errorEl = document.getElementById('modal-error');
+      errorEl.textContent='';
+      if(!name){ errorEl.textContent='Please enter your full name.'; return; }
+      if(!email || !email.includes('@')){ errorEl.textContent='Please enter a valid email.'; return; }
+      if(!(amount>0)){ errorEl.textContent='Please enter an amount.'; return; }
+      // simulate success
+      errorEl.style.color='green';
+      errorEl.textContent = `Thanks ${name}! Donation $${amount.toFixed(2)} received (simulation).`;
+      setTimeout(()=> { closeDonationModal(); errorEl.textContent=''; }, 2000);
+    });
+
+    /* AUTH (localStorage demo) */
+    const authModal = document.getElementById('authModal');
+    const showSignup = document.getElementById('showSignup');
+    const showLogin = document.getElementById('showLogin');
+    const signupForm = document.getElementById('signupForm');
+    const loginForm = document.getElementById('loginForm');
+    const doSignup = document.getElementById('doSignup');
+    const doLogin = document.getElementById('doLogin');
+    const authMsg = document.getElementById('auth-msg');
+    document.getElementById('openAuthModal').addEventListener('click', ()=> { authModal.classList.add('active'); showSignup.click(); });
+    function closeAuthModal(){ authModal.classList.remove('active'); authMsg.textContent=''; }
+    function getUserStore(){ return JSON.parse(localStorage.getItem('fff_users')||'{}'); }
+    function saveUserStore(s){ localStorage.setItem('fff_users', JSON.stringify(s)); }
+
+    showSignup.addEventListener('click', ()=> { signupForm.style.display='block'; loginForm.style.display='none'; authMsg.textContent=''; });
+    showLogin.addEventListener('click', ()=> { signupForm.style.display='none'; loginForm.style.display='block'; authMsg.textContent=''; });
+    doSignup.addEventListener('click', ()=>{
+      const name = document.getElementById('su-name').value.trim();
+      const email = document.getElementById('su-email').value.trim().toLowerCase();
+      const pass = document.getElementById('su-pass').value;
+      if(!name || !email || !pass){ authMsg.style.color='red'; authMsg.textContent='Please fill all fields.'; return; }
+      const store = getUserStore();
+      if(store[email]){ authMsg.style.color='red'; authMsg.textContent='Account exists.'; return; }
+      store[email] = { name, email, pass };
+      saveUserStore(store);
+      authMsg.style.color='green'; authMsg.textContent='Account created (demo).';
+      setTimeout(()=> closeAuthModal(), 900);
+    });
+    doLogin.addEventListener('click', ()=>{
+      const email = document.getElementById('li-email').value.trim().toLowerCase();
+      const pass = document.getElementById('li-pass').value;
+      const store = getUserStore();
+      if(!store[email] || store[email].pass !== pass){ authMsg.style.color='red'; authMsg.textContent='Invalid credentials.'; return; }
+      authMsg.style.color='green'; authMsg.textContent=`Welcome back, ${store[email].name} (demo).`;
+      setTimeout(()=> closeAuthModal(), 900);
+    });
+
+    // close modals with Escape
+    document.addEventListener('keydown', e=> { if(e.key==='Escape'){ if(donationModal.classList.contains('active')) closeDonationModal(); if(authModal.classList.contains('active')) closeAuthModal(); } });
+
+    // small UX: map privacy link
+    document.getElementById('readMorePrivacy').addEventListener('click', (e)=>{ e.preventDefault(); alert('Privacy page placeholder — link this to your full privacy policy page when ready.'); });
+
+    // prevent default for all forms to avoid reload
+    document.querySelectorAll('form').forEach(f=> f.addEventListener('submit', e=> e.preventDefault()));
+  </script>
 </body>
 </html>
